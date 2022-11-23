@@ -1,0 +1,5 @@
+http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
+
+https://blog.csdn.net/housong_csdn/article/details/73920746
+
+https://www.zhihu.com/question/27221568
