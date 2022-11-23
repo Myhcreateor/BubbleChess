@@ -10,7 +10,6 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public int blackScore;
 	public int writeScore;
 	public List<GameObject> piecesList;
-
 	//计算分数的数组
 	private int[][] chessPieceArrays = new int[8][];
 	private int[][] transposeArrays = new int[8][];
@@ -40,13 +39,26 @@ public class ChessBoardController : Singleton<ChessBoardController>
 			}
 		}
 	}
+	public int RamainingRound(int pieceNum)
+	{
+		return chessBoardModel.roundNum - pieceNum / 2;
+	}
+	public void NewStartGame()
+	{
+		blackScore = 0;
+		writeScore = 0;
+		EventHandler.CallNewStartGameEvent();
+		InitChessPieceArrays();
+	}
 	//判断回合数是否结束
 	public bool isRoundOver(int pieceNum)
 	{
+		EventHandler.CallUpdateDebugEvent(chessBoardModel.roundNum-pieceNum/2);
 		if (chessBoardModel.roundNum * 2 <= pieceNum)
 		{
 			//游戏结束
 			EventHandler.CallGameOverEvent();
+			UIManager.Instance.ShowGameOverPanel(blackScore, writeScore);
 			return true;
 		}
 		return false;

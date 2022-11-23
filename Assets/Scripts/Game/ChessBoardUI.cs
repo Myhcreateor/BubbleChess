@@ -21,14 +21,35 @@ public class ChessBoardUI : MonoBehaviour
         EventHandler.ShowScoreEvent += OnShowScoreEvent;
         EventHandler.GenerateChessEvent += OnGenerateChessEvent;
         EventHandler.GameOverEvent += OnGameOverEvent;
+        EventHandler.UpdateDebugEvent += OnUpdateDebugEvent;
+        EventHandler.NewStartGameEvent += OnNewStartGameEvent;
     }
     private void OnDisable()
     {
         EventHandler.ShowScoreEvent -= OnShowScoreEvent;
         EventHandler.GenerateChessEvent -= OnGenerateChessEvent;
         EventHandler.GameOverEvent -= OnGameOverEvent;
+        EventHandler.UpdateDebugEvent -= OnUpdateDebugEvent;
+        EventHandler.NewStartGameEvent -= OnNewStartGameEvent;
     }
-    private void OnGameOverEvent()
+
+	private void OnNewStartGameEvent()
+	{
+        pieceType = 0;
+        for (int i = 0; i < ChessBoardPieces.childCount; i++)
+        {
+            Destroy(ChessBoardPieces.GetChild(i).gameObject);;
+        }
+        EventHandler.CallUpdateDebugEvent(chessBoardController.RamainingRound(pieceType));
+    }
+
+	private void OnUpdateDebugEvent(int index)
+	{
+        debugText.text ="游戏进行中，还剩"+index+"个回合";
+
+    }
+
+	private void OnGameOverEvent()
     {
         Debug.Log("游戏结束");
         ChessBoardController.Instance.CalculateScore();

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: a43db75601913f344b3fc9aa8c9218ba
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Tanugo-S-TTF
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 34adb4354eb4ec44997849debfd2109c, type: 3}
+  - {fileID: 12800000, guid: a38b5afa437219244ad6d32ad3b778a9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -19,4 +19,14 @@ public class EventHandler : MonoBehaviour
 	{
 		ShowScoreEvent?.Invoke(index1,index2);
 	}
+	public static event Action<int> UpdateDebugEvent;
+	public static void CallUpdateDebugEvent(int index)
+	{
+		UpdateDebugEvent?.Invoke(index);
+	}
+	public static event Action NewStartGameEvent;
+	public static void CallNewStartGameEvent()
+	{
+		NewStartGameEvent?.Invoke();
+	}
 }
