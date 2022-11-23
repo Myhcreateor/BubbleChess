@@ -1194,9 +1194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e6204791de9494b8b836900e450a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chessBoardModel: {fileID: 11400000, guid: bc22cb28653422444bd1ea4c03b57afb, type: 2}
   blackScore: 0
   writeScore: 0
-  debugText: {fileID: 0}
+  piecesList: []
 --- !u!114 &319588571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,6 +1210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2c3f9273403ae4983afdebbf84e197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugText: {fileID: 0}
+  pieceType: 0
 --- !u!1 &329006431
 GameObject:
   m_ObjectHideFlags: 0

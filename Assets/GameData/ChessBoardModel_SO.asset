@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82293c6f05d0f674992299de3069d6cb, type: 3}
+  m_Name: ChessBoardModel_SO
+  m_EditorClassIdentifier: 
+  scoreList: 0000000000000000000000000100000003000000080000001400000032000000c8000000
+  piecesList:
+  - {fileID: 842768440572360192, guid: 2aa38c059477ab444b94b120ca087511, type: 3}
+  - {fileID: 5901218925535924934, guid: 4d952a4657665b545bfbd9a9b37ab21e, type: 3}
+  roundNum: 15

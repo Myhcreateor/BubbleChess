@@ -4,16 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChessBoardController : MonoBehaviour
+public class ChessBoardController : Singleton<ChessBoardController>
 {
-	private Dictionary<int, int> scoreDictionary = new Dictionary<int, int>();
-	private List<GameObject> piecesList;
-	private int pieceType = 0;
-	private int roundNum;
-	private Transform ChessBoardPieces;
+	public ChessBoardModel chessBoardModel;
 	public int blackScore;
 	public int writeScore;
-	public Text debugText;
+	public List<GameObject> piecesList;
 
 	//计算分数的数组
 	private int[][] chessPieceArrays = new int[8][];
@@ -23,60 +19,11 @@ public class ChessBoardController : MonoBehaviour
 	private int[][] transposeReversalArray = new int[15][];
 	private void Awake()
 	{
-		debugText = transform.parent.Find("DebugText").GetComponent<Text>();
+		base.Awake();
 		InitChessPieceArrays();
-		InitScoreDictionary();
-		ChessBoardPieces = transform.Find("ChessBoardPieces");
-		roundNum = GameController.singleton.roundNum;
-		piecesList = new List<GameObject>()
-		{
-			Resources.Load<GameObject>("Prefabs/Pieces/BlackPiece"),
-			Resources.Load<GameObject>("Prefabs/Pieces/WritePiece")
-		};
-	}
-	private void OnEnable()
-	{
-		EventHandler.GenerateChessEvent += OnGenerateChessEvent;
-		EventHandler.GameOverEvent += OnGameOverEvent;
-
-
-	}
-	private void OnDisable()
-	{
-		EventHandler.GenerateChessEvent -= OnGenerateChessEvent;
-		EventHandler.GameOverEvent -= OnGameOverEvent;
+		piecesList = chessBoardModel.piecesList;
 	}
 
-	private void OnGameOverEvent()
-	{
-		Debug.Log("游戏结束");
-		CalculateScore();
-	}
-
-	private void OnGenerateChessEvent(GameObject go)
-	{
-		Instantiate(piecesList[pieceType%2], go.transform.position, Quaternion.identity, ChessBoardPieces);
-		UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (pieceType%2)+1);
-		pieceType++;
-		if (roundNum * 2 <= pieceType)
-		{
-			//游戏结束
-			EventHandler.CallGameOverEvent();
-		}
-	}
-	//初始化scoreDictionary
-	private void InitScoreDictionary()
-	{
-		scoreDictionary.Add(0, 0);
-		scoreDictionary.Add(1, 0);
-		scoreDictionary.Add(2, 0);
-		scoreDictionary.Add(3, 1);
-		scoreDictionary.Add(4, 3);
-		scoreDictionary.Add(5, 8);
-		scoreDictionary.Add(6, 20);
-		scoreDictionary.Add(7, 50);
-		scoreDictionary.Add(8, 200);
-	}
 	//初始化棋子数组
 	private void InitChessPieceArrays()
 	{
@@ -93,9 +40,19 @@ public class ChessBoardController : MonoBehaviour
 			}
 		}
 	}
-
+	//判断回合数是否结束
+	public bool isRoundOver(int pieceNum)
+	{
+		if (chessBoardModel.roundNum * 2 <= pieceNum)
+		{
+			//游戏结束
+			EventHandler.CallGameOverEvent();
+			return true;
+		}
+		return false;
+	}
 	//更新棋盘，如果是黑色棋子值为1，白色棋子值为2
-	private void UpdateChessPieceArrays(int col, int row, int pieceType)
+	public void UpdateChessPieceArrays(int col, int row, int pieceType)
 	{
 		chessPieceArrays[col][row] = pieceType;
 	}
@@ -201,7 +158,8 @@ public class ChessBoardController : MonoBehaviour
 		blackScore += CheckOneLine(s)[0];
 		writeScore += CheckOneLine(s)[1];
 		//Debug.Log(s);
-		debugText.text = "blackScore:" + blackScore + "writeScore:" + writeScore;
+		//UI显示分数
+		EventHandler.CallShowScoreEvent(blackScore,writeScore);
 	}
 
 	public int[] CheckOneLine(string line)
@@ -218,7 +176,7 @@ public class ChessBoardController : MonoBehaviour
 				{
 					if (currentType == 2)
 					{
-						writeScore += scoreDictionary[currentLinkNum];
+						writeScore += chessBoardModel.GetScore(currentLinkNum);
 					}
 					currentLinkNum = 1;
 					currentType = 1;
@@ -234,7 +192,7 @@ public class ChessBoardController : MonoBehaviour
 				{
 					if (currentType == 1)
 					{
-						blackScore += scoreDictionary[currentLinkNum];
+						blackScore += chessBoardModel.GetScore(currentLinkNum);
 					}
 					currentLinkNum = 1;
 					currentType = 2;
@@ -248,11 +206,11 @@ public class ChessBoardController : MonoBehaviour
 			{
 				if (currentType == 1)
 				{
-					blackScore += scoreDictionary[currentLinkNum];
+					blackScore += chessBoardModel.GetScore(currentLinkNum);
 				}
 				else if (currentType == 2)
 				{
-					writeScore += scoreDictionary[currentLinkNum];
+					writeScore += chessBoardModel.GetScore(currentLinkNum);
 				}
 				currentLinkNum = 1;
 				currentType = 0;

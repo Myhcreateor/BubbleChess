@@ -14,4 +14,9 @@ public class EventHandler : MonoBehaviour
 	{
 		GameOverEvent?.Invoke();
 	}
+	public static event Action<int,int> ShowScoreEvent;
+	public static void CallShowScoreEvent(int index1,int index2)
+	{
+		ShowScoreEvent?.Invoke(index1,index2);
+	}
 }

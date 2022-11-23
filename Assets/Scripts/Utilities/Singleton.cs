@@ -4,34 +4,33 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Singleton<T> where T : new()
+public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    private static T s_singleton = default(T);
-    private static object s_objectLock = new object();
-    public static T singleton
-    {
-        get
-        {
-            if (Singleton<T>.s_singleton == null)
-            {
-                object obj;
-                Monitor.Enter(obj = Singleton<T>.s_objectLock);//加锁防止多线程创建单例
-                try
-                {
-                    if (Singleton<T>.s_singleton == null)
-                    {
-                        Singleton<T>.s_singleton = ((default(T) == null) ? Activator.CreateInstance<T>() : default(T));//创建单例的实例
-                    }
-                }
-                finally
-                {
-                    Monitor.Exit(obj);
-                }
-            }
-            return Singleton<T>.s_singleton;
-        }
-    }
-    protected Singleton()
-    {
-    }
+    private static T instance;
+    public static T Instance
+	{
+		get { return instance; }
+	}
+	protected virtual void Awake()
+	{
+		if (instance != null)
+		{
+			Destroy(this.gameObject);
+		}
+		else
+		{
+			instance = (T)this;
+		}
+	}
+	public static bool IsInitialzed
+	{
+		get { return instance != null; }
+	}
+	public virtual void OnDestory()
+	{
+		if (instance == null)
+		{
+			instance = null;
+		}
+	}
 }
