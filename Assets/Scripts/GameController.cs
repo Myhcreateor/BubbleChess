@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameController : Singleton<GameController>
 {
-
 	public int roundNum=15;
+	private void Awake()
+	{
+		base.Awake();
 
+	}
 }
