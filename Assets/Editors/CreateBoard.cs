@@ -19,8 +19,8 @@ public class CreateBoard : MonoBehaviour
 			for (int row = 0; row < 8; row++)//8行
 			{
 				//棋子边长为80，设定两个棋子的中心点间距为80
-				float posx = 80 * col;
-				float posy = 80 * row;
+				float posx = 75 * col;
+				float posy = 75 * row;
 				GameObject creation = Instantiate(floorList[Random.Range(0,4)], new Vector3(posx, posy, 0), Quaternion.identity);//创建棋盘上的各个棋格
 				if (!GameObject.Find("ChessBoardGridPraret"))
 				{
