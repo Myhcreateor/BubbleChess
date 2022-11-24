@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef79b670dd738c146b94e8d62bf340be, type: 3}
+  m_Name: CardModel_SO
+  m_EditorClassIdentifier: 
+  CardList:
+  - cardName: 1
+    id: 0
+    cardDetails: {fileID: 21300000, guid: 65a0cd2549659a54097730ca46661e79, type: 3}
+    costNum: 1
+    roundUpNum: 3
+    description: 
+  - cardName: 2
+    id: 1
+    cardDetails: {fileID: 21300000, guid: fe2762650cab72e4c8350fbd2f005792, type: 3}
+    costNum: 1
+    roundUpNum: 10
+    description: 
+  - cardName: 3
+    id: 2
+    cardDetails: {fileID: 21300000, guid: 2d54461b0e112c24fa883256eb644336, type: 3}
+    costNum: 2
+    roundUpNum: 2
+    description: 
+  - cardName: 4
+    id: 3
+    cardDetails: {fileID: 21300000, guid: 48b48da90179ae942b66571ecade769a, type: 3}
+    costNum: 2
+    roundUpNum: 3
+    description: 
+  - cardName: 5
+    id: 4
+    cardDetails: {fileID: 21300000, guid: 49abf4a5905613343a345912eff97ee4, type: 3}
+    costNum: 4
+    roundUpNum: 3
+    description: 

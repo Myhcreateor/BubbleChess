@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class ChessBoardController : Singleton<ChessBoardController>
 {
 	public ChessBoardModel chessBoardModel;
@@ -11,7 +11,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public int writeScore;
 	public List<GameObject> piecesList;
 	//计算分数的数组
-	private int[][] chessPieceArrays = new int[8][];
+	public int[][] chessPieceArrays = new int[8][];
 	private int[][] transposeArrays = new int[8][];
 	private int[][] reversalArrays = new int[8][];
 	private int[][] slantArrays = new int[15][];
@@ -23,17 +23,43 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		piecesList = chessBoardModel.piecesList;
 	}
 
-	//初始化棋子数组
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			GuXuanSkillCommand();
+		}
+	}
+	public void GuXuanSkillCommand()
+	{
+		GuXuanCommand guXuanCommand = new GuXuanCommand(ref chessPieceArrays, 1);
+	    guXuanCommand.Execute();
+		for (int i = 0; i < guXuanCommand.str.Length; i++)
+		{
+			if (chessPieceArrays[int.Parse(guXuanCommand.str[i].Split(',')[0])][int.Parse(guXuanCommand.str[i].Split(',')[1])] != 0)
+			{
+				Instantiate(piecesList[0], transform.Find("ChessBoardGridPraret/" + guXuanCommand.str[i]).transform.position, Quaternion.identity, transform.Find("ChessBoardPieces"));
+			}
+			else
+			{
+				GameObject go = Instantiate(piecesList[0], transform.Find("ChessBoardGridPraret/" + guXuanCommand.str[i]).transform.position, Quaternion.identity, transform.Find("ChessBoardPieces"));
+				go.GetComponent<Image>().DOFade(0, 2f);
+				Destroy(go, 2f);
+			}
+		}
+	}
+
+//初始化棋子数组
 	private void InitChessPieceArrays()
 	{
-		for (int col = 0; col < 8; col++)//8行
+		for (int col = 0; col < 8; col++)
 		{
 			chessPieceArrays[col] = new int[8];
 			transposeArrays[col] = new int[8];
 		}
-		for (int col = 0; col < 8; col++)//8行
+		for (int col = 0; col < 8; col++)
 		{
-			for (int row = 0; row < 8; row++)//8列
+			for (int row = 0; row < 8; row++)
 			{
 				chessPieceArrays[col][row] = 0;
 			}
@@ -67,6 +93,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public void UpdateChessPieceArrays(int col, int row, int pieceType)
 	{
 		chessPieceArrays[col][row] = pieceType;
+		//更新棋盘UI
 	}
 	/// <summary>
 	/// 计算分数代码

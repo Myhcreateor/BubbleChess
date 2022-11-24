@@ -33,6 +33,7 @@ public class ChessBoardUI : MonoBehaviour
         EventHandler.NewStartGameEvent -= OnNewStartGameEvent;
     }
 
+
 	private void OnNewStartGameEvent()
 	{
         pieceType = 0;

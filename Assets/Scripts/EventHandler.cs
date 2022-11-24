@@ -29,4 +29,5 @@ public class EventHandler : MonoBehaviour
 	{
 		NewStartGameEvent?.Invoke();
 	}
+
 }
