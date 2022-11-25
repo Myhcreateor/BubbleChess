@@ -12,34 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef79b670dd738c146b94e8d62bf340be, type: 3}
   m_Name: CardModel_SO
   m_EditorClassIdentifier: 
-  CardList:
+  cardList:
   - cardName: 1
     id: 0
-    cardDetails: {fileID: 21300000, guid: 65a0cd2549659a54097730ca46661e79, type: 3}
+    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardSprite: {fileID: 21300000, guid: 4664e44a4e5c21e49bb7c37effcead81, type: 3}
     costNum: 1
-    roundUpNum: 3
-    description: 
+    roundUpNum: 0
+    description: "\u653E\u5F03\u672C\u56DE\u5408\u4E0B\u5B50\uFF0C\u800C\u5728\u68CB\u76D8\u968F\u673A\u7684\u4F4D\u7F6E\u53EC\u55242\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u82E5\u8BE5\u68CB\u5B50\u5468\u56F4\u65E0\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5219\u8BE5\u68CB\u5B50\u4FDD\u7559\uFF0C\u5426\u5219\u5219\u79FB\u9664\u3002"
   - cardName: 2
     id: 1
-    cardDetails: {fileID: 21300000, guid: fe2762650cab72e4c8350fbd2f005792, type: 3}
+    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardSprite: {fileID: 0}
     costNum: 1
-    roundUpNum: 10
+    roundUpNum: 1
     description: 
   - cardName: 3
     id: 2
-    cardDetails: {fileID: 21300000, guid: 2d54461b0e112c24fa883256eb644336, type: 3}
-    costNum: 2
-    roundUpNum: 2
+    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardSprite: {fileID: 0}
+    costNum: 1
+    roundUpNum: 1
     description: 
   - cardName: 4
     id: 3
-    cardDetails: {fileID: 21300000, guid: 48b48da90179ae942b66571ecade769a, type: 3}
-    costNum: 2
-    roundUpNum: 3
+    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardSprite: {fileID: 0}
+    costNum: 1
+    roundUpNum: 1
     description: 
   - cardName: 5
     id: 4
-    cardDetails: {fileID: 21300000, guid: 49abf4a5905613343a345912eff97ee4, type: 3}
-    costNum: 4
-    roundUpNum: 3
+    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardSprite: {fileID: 0}
+    costNum: 1
+    roundUpNum: 1
     description: 

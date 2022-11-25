@@ -6,6 +6,11 @@ using DG.Tweening;
 public class Card_GuXuan : Card
 {
     public GuXuanCommand guXuanCommand;
+
+	private void Start()
+	{
+		cardDetails = CardManager.Instance.cardModel_SO.GetCardDetailsWithName(CardName.GuXuan);
+	}
 	public override void ExecuteCommand()
 	{
 		ChessBoardController c = ChessBoardController.Instance;
@@ -26,4 +31,8 @@ public class Card_GuXuan : Card
 		}
 	}
 
+	public override CardDetails GetCardDetails()
+	{
+		throw new System.NotImplementedException();
+	}
 }

@@ -4,5 +4,7 @@ using UnityEngine;
 
 public abstract class Card : MonoBehaviour
 {
+    public CardDetails cardDetails;
     public abstract void ExecuteCommand();
+    public abstract CardDetails GetCardDetails();
 }

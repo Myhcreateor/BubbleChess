@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class DragNoTarget : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public bool dragging = false;
@@ -27,7 +28,6 @@ public class DragNoTarget : MonoBehaviour, IPointerClickHandler, IBeginDragHandl
         {
             if (!dragging)
             {
-                Debug.Log("按住鼠标左键");
                 dragging = true;
                 selectMode = false;
                 //开始拖拽状态的预览
@@ -51,6 +51,7 @@ public class DragNoTarget : MonoBehaviour, IPointerClickHandler, IBeginDragHandl
                 Destroy(this.gameObject);
                 //触发这个牌的效果
                 this.gameObject.GetComponent<Card>().ExecuteCommand();
+                HandCardLayout.Instance.RemoveCard(this.transform);
             }
         }
         EndThisDrag();
@@ -59,7 +60,16 @@ public class DragNoTarget : MonoBehaviour, IPointerClickHandler, IBeginDragHandl
     //放大卡牌效果
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+		if (dragging)
+		{
+            return;
+		}
+        Image enlargedImage = transform.parent.Find("ShowEnlargedIamge").GetComponent<Image>();
+        enlargedImage.DOColor(new Color(255, 255, 255, 255), 0.2f);
+        enlargedImage.sprite = this.GetComponent<Card>().cardDetails.cardSprite;
+        enlargedImage.DOFade(0,5f);
+
+
     }
 
     //拖拽中每帧更新位置

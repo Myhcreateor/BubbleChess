@@ -8,11 +8,9 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
 {
     public static bool EnablePreview = true;
 
-    [SerializeField]
     private Vector3 savePos;
     [SerializeField]
     private float upmove;
-    [SerializeField]
     private int siblingIndex;
 
     private DragNoTarget dragNoTarget;
@@ -34,7 +32,6 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         SaveCardSate();
-        Debug.Log("¿ªÊ¼Ô¤ÀÀ");
         if (EnablePreview)
         {
             StartPreView();
@@ -43,7 +40,6 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("ÍË³öÔ¤ÀÀ");
         if (EnablePreview)
         {
             EndPreView();
@@ -71,7 +67,6 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
 
     private void StartPreView()
     {
-        transform.DOMoveY(upmove, 0.1f);
         transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         siblingIndex = transform.GetSiblingIndex();
         transform.SetAsLastSibling();
