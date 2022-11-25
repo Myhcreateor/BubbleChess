@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - ChessPiece
+  - ChessBoardRegion
   layers:
   - Default
   - TransparentFX

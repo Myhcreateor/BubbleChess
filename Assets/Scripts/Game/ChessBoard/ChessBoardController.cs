@@ -23,30 +23,13 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		piecesList = chessBoardModel.piecesList;
 	}
 
-	private void Update()
+	public Transform GetChessBoardGridTransform()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			GuXuanSkillCommand();
-		}
+		return transform.Find("ChessBoardGridPraret");
 	}
-	public void GuXuanSkillCommand()
+	public Transform GetChessBoardPiecesTransform()
 	{
-		GuXuanCommand guXuanCommand = new GuXuanCommand(ref chessPieceArrays, 1);
-	    guXuanCommand.Execute();
-		for (int i = 0; i < guXuanCommand.str.Length; i++)
-		{
-			if (chessPieceArrays[int.Parse(guXuanCommand.str[i].Split(',')[0])][int.Parse(guXuanCommand.str[i].Split(',')[1])] != 0)
-			{
-				Instantiate(piecesList[0], transform.Find("ChessBoardGridPraret/" + guXuanCommand.str[i]).transform.position, Quaternion.identity, transform.Find("ChessBoardPieces"));
-			}
-			else
-			{
-				GameObject go = Instantiate(piecesList[0], transform.Find("ChessBoardGridPraret/" + guXuanCommand.str[i]).transform.position, Quaternion.identity, transform.Find("ChessBoardPieces"));
-				go.GetComponent<Image>().DOFade(0, 2f);
-				Destroy(go, 2f);
-			}
-		}
+		return transform.Find("ChessBoardPieces");
 	}
 
 //初始化棋子数组
