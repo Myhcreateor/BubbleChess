@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 283968265456149868}
   - component: {fileID: 7374675273669080995}
   - component: {fileID: 8678130464631927459}
+  - component: {fileID: 3749214790078916873}
+  - component: {fileID: 5349513191617820294}
   m_Layer: 5
   m_Name: PurplePiece
   m_TagString: ChessPiece
@@ -75,3 +77,29 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3749214790078916873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791014184374140915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606b340990e8fd2478d526ef0b40e26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceNum: 0
+--- !u!114 &5349513191617820294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791014184374140915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606b340990e8fd2478d526ef0b40e26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceNum: 0

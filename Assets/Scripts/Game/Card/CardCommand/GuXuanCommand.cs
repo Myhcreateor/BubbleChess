@@ -22,7 +22,6 @@ public class GuXuanCommand :ICommand
 			int randomY = Random.Range(0, 8);
 			if (boardChessArrays[randomX][randomY] == 0)
 			{
-				//Debug.Log("棋盘中x:" + randomX + "y:" + randomY + "改变成了" + pieceType);
 				bool isAroundHasPiece = false;
 				for (int j = -1; j <= 1; j++)
 				{

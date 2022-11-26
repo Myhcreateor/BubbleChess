@@ -2339,6 +2339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 0}
   pieceType: 0
+  allPiecesList: []
 --- !u!1 &325400354
 GameObject:
   m_ObjectHideFlags: 0

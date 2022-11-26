@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7063075011380766906}
   - component: {fileID: 553330298848311925}
   - component: {fileID: 1845111640456380277}
+  - component: {fileID: -6394245537351418531}
   m_Layer: 5
   m_Name: WhitePiece
   m_TagString: ChessPiece
@@ -75,3 +76,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-6394245537351418531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560530495482688037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 606b340990e8fd2478d526ef0b40e26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceNum: 0

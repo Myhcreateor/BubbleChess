@@ -29,5 +29,9 @@ public class EventHandler : MonoBehaviour
 	{
 		NewStartGameEvent?.Invoke();
 	}
-
+	public static event Action UpdateChessBoardEvent;
+	public static void CallUpdateChessBoardEvent()
+	{
+		UpdateChessBoardEvent?.Invoke();
+	}
 }

@@ -10,7 +10,6 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
     public IsDragTarget isDragTarget;
     private Vector3 savePos;
     private int siblingIndex;
-
     private DragTarget dragTarget;
     private void Awake()
     {
@@ -74,6 +73,7 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
         //»º¶¯º¯Êýtransform.DOMove(savePos, 0.2f).SetEase(Ease.Linear);
         transform.position = savePos;
         CheckHoverInThisCrd();
+        transform.SetSiblingIndex(siblingIndex);
         EnablePreview = true;
     }
 
@@ -86,7 +86,6 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
 
     private void EndPreView()
     {
-        //transform.DOMoveY(-upmove, 0.1f);
         transform.DOMove(savePos, 0.1f);
         transform.localScale = Vector3.one;
         transform.SetSiblingIndex(siblingIndex);

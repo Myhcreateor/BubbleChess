@@ -5,11 +5,15 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private GameObject hintImage;
+    private GameObject hintGo;
+    private Image hintImage;
+    private bool isRelease;
     private void Awake()
     {
         base.Awake();
-        hintImage = Instantiate(Resources.Load<GameObject>("Prefabs/HintImage"), new Vector3(0, 0, 0), Quaternion.identity, transform.parent) ;
+        hintGo = Instantiate(Resources.Load<GameObject>("Prefabs/HintImage"), new Vector3(0, 0, 0), Quaternion.identity, transform.parent) ;
+        hintImage = hintGo.GetComponent<Image>();
+        hintImage.enabled = false;
     }
 
     //拖拽模式
@@ -38,21 +42,22 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
             if(g.gameObject.tag == "Floor")
 			{
                 this.gameObject.GetComponent<Image>().enabled = false;
-                hintImage.GetComponent<Image>().enabled = true;
-                hintImage.transform.position = g.gameObject.transform.position;
+                hintImage.enabled = true;
+                hintGo.transform.position = g.gameObject.transform.position;
                 isInChessBoard = true;
 
 			}
         }
 		if (!isInChessBoard)
 		{
-            hintImage.GetComponent<Image>().enabled = false;
+            hintImage.enabled = false;
         }
 
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         bool isExecute = false;
+        Card card = gameObject.GetComponent<Card>();
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         //向鼠标位置发射一条射线，射线检测到的是否点击UI
         EventSystem.current.RaycastAll(eventData, raycastResults);
@@ -61,15 +66,20 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
             if (g.gameObject.tag == "Floor")
             {
                 //如果放在合适的位置则触发这个牌的效果
-                this.gameObject.GetComponent<Card>().ExecuteCommand();
-                HandCardLayout.Instance.RemoveCard(this.transform);
-                isExecute = true;
-                hintImage.GetComponent<Image>().enabled = false;
+                string s = g.gameObject.name;
+                card.SetClickTrans(s);
+                isRelease= card.ExecuteCommand();
+				if (isRelease)
+				{
+                    HandCardLayout.Instance.RemoveCard(this.transform);
+                    isExecute = true;
+                }
+                hintImage.enabled = false;
             }
         }
 		if (!isExecute)
 		{
-            hintImage.GetComponent<Image>().enabled = false;
+            hintImage.enabled = false;
             this.gameObject.GetComponent<Image>().enabled = true;
             EndThisDrag();
         }

@@ -5,5 +5,6 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour
 {
     public CardDetails cardDetails;
-    public abstract void ExecuteCommand();
+    public abstract bool ExecuteCommand();
+    public abstract void SetClickTrans(string s);
 }
