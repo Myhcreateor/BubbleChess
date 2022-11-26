@@ -20,11 +20,4 @@ public class Card_HuanMie : Card
 	{
 		clickTrans = s;
 	}
-
-
-	// Update is called once per frame
-	void Update()
-    {
-        
-    }
 }
