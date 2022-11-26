@@ -29,21 +29,21 @@ MonoBehaviour:
     description: 
   - cardName: 3
     id: 2
-    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
-    cardSprite: {fileID: 0}
+    cardPrefabs: {fileID: 4770560170428687271, guid: bea3149be904a9b40ab19a59a4b3fb92, type: 3}
+    cardSprite: {fileID: 21300000, guid: 5a39fee1158c1df438dfe7e5ae1958ed, type: 3}
     costNum: 1
     roundUpNum: 1
-    description: 
+    description: "\u9009\u62E9\u4E00\u4E2A\u672A\u7EC4\u6210\u8FDE\u5BF9\u7684\u654C\u65B9\u68CB\u5B50\u5E76\u5C06\u5176\u6D88\u706D\uFF0C\u4F60\u7684\u5BF9\u624B\u6478\u4E00\u5F20\u724C"
   - cardName: 4
     id: 3
-    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardPrefabs: {fileID: 4770560170428687271, guid: bea3149be904a9b40ab19a59a4b3fb92, type: 3}
     cardSprite: {fileID: 0}
     costNum: 1
     roundUpNum: 1
     description: 
   - cardName: 5
     id: 4
-    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardPrefabs: {fileID: 4770560170428687271, guid: bea3149be904a9b40ab19a59a4b3fb92, type: 3}
     cardSprite: {fileID: 0}
     costNum: 1
     roundUpNum: 1

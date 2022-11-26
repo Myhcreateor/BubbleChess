@@ -1945,7 +1945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4438a741a6494947892539b4b251a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upmove: 200
+  isDragTarget: 0
 --- !u!114 &309662106
 MonoBehaviour:
   m_ObjectHideFlags: 0

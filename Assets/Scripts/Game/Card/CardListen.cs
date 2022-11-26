@@ -7,24 +7,36 @@ using DG.Tweening;
 public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
     public static bool EnablePreview = true;
-
+    public IsDragTarget isDragTarget;
     private Vector3 savePos;
-    [SerializeField]
-    private float upmove;
     private int siblingIndex;
 
-    private DragNoTarget dragNoTarget;
-
+    private DragTarget dragTarget;
     private void Awake()
     {
-        if (GetComponent<DragNoTarget>() != null)
-        {
-            dragNoTarget = GetComponent<DragNoTarget>();
+		if (isDragTarget == IsDragTarget.DragNoTarget)
+		{
+            if (GetComponent<DragNoTarget>() != null)
+            {
+                dragTarget = GetComponent<DragNoTarget>();
+            }
+            else
+            {
+                Debug.Log("没有添加DragNoTarget拖拽脚本");
+            }
+		}
+		else
+		{
+            if (GetComponent<DragHasTarget>() != null)
+            {
+                dragTarget = GetComponent<DragHasTarget>();
+            }
+            else
+            {
+                Debug.Log("没有添加DragHasTarget拖拽脚本");
+            }
         }
-        else
-        {
-            Debug.Log("没有添加拖拽脚本");
-        }
+       
 
        
     }
@@ -88,7 +100,7 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
     //储存卡牌的初始状态
     private void SaveCardSate()
     {
-        if (!dragNoTarget.dragging)
+        if (!dragTarget.dragging)
         {
             savePos = transform.position;
         }
@@ -113,4 +125,9 @@ public class CardListen : MonoBehaviour, IPointerExitHandler, IPointerEnterHandl
         }
     }
 
+}
+
+public enum IsDragTarget
+{
+    DragHasTarget,DragNoTarget
 }

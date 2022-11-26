@@ -30,9 +30,4 @@ public class Card_GuXuan : Card
 			}
 		}
 	}
-
-	public override CardDetails GetCardDetails()
-	{
-		throw new System.NotImplementedException();
-	}
 }
