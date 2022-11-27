@@ -79,8 +79,6 @@ public class ClickListener : MonoBehaviour
 			EventHandler.CallGenerateChessEvent(go);
 		}
 		return go;
-
-
 	}
 
 	/// <summary>

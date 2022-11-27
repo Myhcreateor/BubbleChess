@@ -28,5 +28,5 @@ public class CardDetails
 }
 public enum CardName
 {
-    None, GuXuan, FengYin, HuanMie, XingYi, LianYin,YanXi
+    None, GuXuan, FengYin, HuanMie, XingYi, LianYin,YanXi,DiXian,ZhiHuan
 }
