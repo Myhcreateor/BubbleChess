@@ -106,6 +106,33 @@ public class ChessBoardController : Singleton<ChessBoardController>
 			CalculateLineScore(transposeReversalArray[index]);
 		}
 	}
+	public int CalculateScoreGap(int type)
+	{
+		blackScore = 0;
+		writeScore = 0;
+		for (int index = 0; index < 8; index++)
+		{
+			CalculateLineScore(chessPieceArrays[index]);
+		}
+		transposeArrays = TransposeArray(chessPieceArrays);
+		for (int index = 0; index < 8; index++)
+		{
+			CalculateLineScore(transposeArrays[index]);
+		}
+		slantArrays = SlantArray(chessPieceArrays);
+		for (int index = 0; index < 15; index++)
+		{
+			CalculateLineScore(slantArrays[index]);
+		}
+		reversalArrays = ReversalArray(chessPieceArrays);
+		transposeReversalArray = SlantArray(reversalArrays);
+		for (int index = 0; index < 15; index++)
+		{
+			CalculateLineScore(transposeReversalArray[index]);
+		}
+
+		return type == 1 ? blackScore - writeScore : writeScore - blackScore;
+	}
 	//反转数组
 	public int[][] ReversalArray(int[][] arr)
 	{

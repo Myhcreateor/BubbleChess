@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2240197435959964526
+--- !u!1 &5360375521412364225
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2240197435959964433}
-  - component: {fileID: 2240197435959964435}
-  - component: {fileID: 2240197435959964432}
-  - component: {fileID: 7262951467936124638}
-  - component: {fileID: 8227328454302345814}
-  - component: {fileID: 829098792058403814}
+  - component: {fileID: 5360375521412364222}
+  - component: {fileID: 5360375521412364220}
+  - component: {fileID: 5360375521412364223}
+  - component: {fileID: 3584312734745217649}
+  - component: {fileID: 3584312734745217652}
+  - component: {fileID: 4304489966520260310}
   m_Layer: 5
-  m_Name: Card_XingYi
+  m_Name: Card_YanXi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2240197435959964433
+--- !u!224 &5360375521412364222
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240197435959964526}
+  m_GameObject: {fileID: 5360375521412364225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,21 +40,21 @@ RectTransform:
   m_AnchoredPosition: {x: 999, y: 103}
   m_SizeDelta: {x: 200, y: 275}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2240197435959964435
+--- !u!222 &5360375521412364220
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240197435959964526}
+  m_GameObject: {fileID: 5360375521412364225}
   m_CullTransparentMesh: 0
---- !u!114 &2240197435959964432
+--- !u!114 &5360375521412364223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240197435959964526}
+  m_GameObject: {fileID: 5360375521412364225}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 701733ce4a0017742837ecab5cfe7aed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fa9ef35ba1b18f4aadbec3e9e659b8e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -78,42 +78,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7262951467936124638
+--- !u!114 &3584312734745217649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240197435959964526}
+  m_GameObject: {fileID: 5360375521412364225}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4438a741a6494947892539b4b251a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragTarget: 0
---- !u!114 &8227328454302345814
+  isDragTarget: 1
+--- !u!114 &3584312734745217652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240197435959964526}
+  m_GameObject: {fileID: 5360375521412364225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e03178fde84f69642bde430b9406de07, type: 3}
+  m_Script: {fileID: 11500000, guid: fe67bc01c3e851c439d2fc8374537137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dragging: 0
---- !u!114 &829098792058403814
+--- !u!114 &4304489966520260310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240197435959964526}
+  m_GameObject: {fileID: 5360375521412364225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da402c997839234c92b2cb5426e5ee8, type: 3}
+  m_Script: {fileID: 11500000, guid: bde2c925fff8cd94285f2ec0f32293e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardDetails:

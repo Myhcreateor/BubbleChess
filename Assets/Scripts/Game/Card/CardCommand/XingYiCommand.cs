@@ -19,20 +19,55 @@ public class XingYiCommand : ICommand
 	{
 		int x = int.Parse(clickTrans.Split(',')[0]);
 		int y = int.Parse(clickTrans.Split(',')[1]);
+		int max =-100;
+		int num = ChessBoardController.Instance.CalculateScoreGap(pieceType);
+		string maxStr = "";
 		if (boardChessArrays[x][y] == pieceType)
 		{
 			if (IsHasAdjacentSpace(x,y,pieceType))
 			{
+				
 				boardChessArrays[x][y] = 0;
-				int randomNum = Random.Range(0, adjacentSpaceList.Count);
-				boardChessArrays[int.Parse(adjacentSpaceList[randomNum].Split(',')[0])][int.Parse(adjacentSpaceList[randomNum].Split(',')[1])]=pieceType;
+				for(int i=0;i< adjacentSpaceList.Count; i++)
+				{
+					boardChessArrays[int.Parse(adjacentSpaceList[i].Split(',')[0])][int.Parse(adjacentSpaceList[i].Split(',')[1])] = pieceType;
+					int index= ChessBoardController.Instance.CalculateScoreGap(pieceType);
+					if (index > max)
+					{
+						max = index;
+						maxStr = adjacentSpaceList[i];
+					}
+					boardChessArrays[int.Parse(adjacentSpaceList[i].Split(',')[0])][int.Parse(adjacentSpaceList[i].Split(',')[1])] = 0;
+				}
+				for (int i = 0; i < adjacentSpaceList.Count; i++)
+				{
+					int emenyType = 0;
+					if (pieceType == 1) emenyType = 2;
+					else emenyType = 1;
+					boardChessArrays[int.Parse(adjacentSpaceList[i].Split(',')[0])][int.Parse(adjacentSpaceList[i].Split(',')[1])] = emenyType;
+					int index = ChessBoardController.Instance.CalculateScoreGap(emenyType);
+					if (index > max)
+					{
+						max = index;
+						maxStr = adjacentSpaceList[i];
+					}
+					boardChessArrays[int.Parse(adjacentSpaceList[i].Split(',')[0])][int.Parse(adjacentSpaceList[i].Split(',')[1])] = 0;
+				}
+				if (num >= max)
+				{
+					int randomNum = Random.Range(0, adjacentSpaceList.Count);
+					boardChessArrays[int.Parse(adjacentSpaceList[randomNum].Split(',')[0])][int.Parse(adjacentSpaceList[randomNum].Split(',')[1])] = pieceType;
+				}
+				else
+				{
+					boardChessArrays[int.Parse(maxStr.Split(',')[0])][int.Parse(maxStr.Split(',')[1])] = pieceType;
+				}
 				EventHandler.CallUpdateChessBoardEvent();
 				isSuccessRelease = true;
-				
 			}
 		}
-
 	}
+
 	public bool IsHasAdjacentSpace(int x,int y,int pieceType)
 	{
 		bool isHasAdjacentSpace = false;

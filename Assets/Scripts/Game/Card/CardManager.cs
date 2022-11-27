@@ -19,7 +19,7 @@ public class CardManager : Singleton<CardManager>
 		}
 	}
 	//随机在cardModel里生成一张牌
-	private void GenerateRandomCard()
+	public void GenerateRandomCard()
 	{
 		int randomNum = Random.Range(0, cardModel_SO.cardList.Count);
 		GameObject go =  cardModel_SO.cardList[randomNum].cardPrefabs;
