@@ -8,6 +8,7 @@ public class ZhiHuanCommand : ICommand
 	private int pieceType;
 	public bool isSuccessRelease = false;
 	private string clickTrans;
+	private int[,] offsetArray = new int[4, 2] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 } };
 	private List<string> adjoinEnemyPieceList = new List<string>();
 	public ZhiHuanCommand(ref int[][] chessPieceArrays, int pieceType, string clickTrans)
 	{
@@ -24,21 +25,15 @@ public class ZhiHuanCommand : ICommand
 		else emenyType = 1;
 		if (boardChessArrays[x][y] == pieceType)
 		{
-			if (boardChessArrays[x - 1][y] == emenyType)
+			for (int i = 0; i < offsetArray.GetLength(0); i++)
 			{
-				adjoinEnemyPieceList.Add((x - 1).ToString() + "," + y.ToString());
-			}
-			if (boardChessArrays[x + 1][y] == emenyType)
-			{
-				adjoinEnemyPieceList.Add((x + 1).ToString() + "," + y.ToString());
-			}
-			if (boardChessArrays[x][y - 1] == emenyType)
-			{
-				adjoinEnemyPieceList.Add((x).ToString() + "," + (y - 1).ToString());
-			}
-			if (boardChessArrays[x][y + 1] == emenyType)
-			{
-				adjoinEnemyPieceList.Add((x).ToString() + "," + (y + 1).ToString());
+				if ((x + offsetArray[i, 0]>0)&&( x + offsetArray[i, 0]<8)&& (y +offsetArray[i, 1] < 8) && (y + offsetArray[i, 1] >0))
+				{
+					if(boardChessArrays[x + offsetArray[i, 0]][y + offsetArray[i, 1]] == emenyType)
+					{
+						adjoinEnemyPieceList.Add((x + offsetArray[i, 0]).ToString() + "," + (y + offsetArray[i, 1]).ToString());
+					}
+				}
 			}
 			if (adjoinEnemyPieceList.Count > 0)
 			{

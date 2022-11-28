@@ -62,7 +62,6 @@ public class XingYiCommand : ICommand
 				{
 					boardChessArrays[int.Parse(maxStr.Split(',')[0])][int.Parse(maxStr.Split(',')[1])] = pieceType;
 				}
-				EventHandler.CallUpdateChessBoardEvent();
 				isSuccessRelease = true;
 			}
 		}
