@@ -27,7 +27,7 @@ public class ZhiHuanCommand : ICommand
 		{
 			for (int i = 0; i < offsetArray.GetLength(0); i++)
 			{
-				if ((x + offsetArray[i, 0]>0)&&( x + offsetArray[i, 0]<8)&& (y +offsetArray[i, 1] < 8) && (y + offsetArray[i, 1] >0))
+				if ((x + offsetArray[i, 0]>=0)&&( x + offsetArray[i, 0]<8)&& (y +offsetArray[i, 1] < 8) && (y + offsetArray[i, 1] >=0))
 				{
 					if(boardChessArrays[x + offsetArray[i, 0]][y + offsetArray[i, 1]] == emenyType)
 					{

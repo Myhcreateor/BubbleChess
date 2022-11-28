@@ -50,9 +50,9 @@ public class QuLiCommand : ICommand
 		int num = 0;
 		for (int i = 0; i < offsetArray.GetLength(0); i++)
 		{
-			num++;
-			if ((x + offsetArray[i, 0] > 0) && (x + offsetArray[i, 0] < 8) && (y + offsetArray[i, 1] < 8) && (y + offsetArray[i, 1] > 0))
+			if ((x + offsetArray[i, 0] >= 0) && (x + offsetArray[i, 0] < 8) && (y + offsetArray[i, 1] < 8) && (y + offsetArray[i, 1] >= 0))
 			{
+				num++;
 				if (boardChessArrays[x + offsetArray[i, 0]][y + offsetArray[i, 1]] == pieceType)
 				{
 					adjoinOwnPieceList.Add((x + offsetArray[i, 0]).ToString() + "," + (y + offsetArray[i, 1]).ToString());
