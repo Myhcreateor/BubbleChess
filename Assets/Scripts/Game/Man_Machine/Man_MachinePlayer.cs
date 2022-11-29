@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Man_MachinePlayer : Singleton<Man_MachinePlayer>
+public class Man_MachinePlayer 
 {
-	private void Awake()
+	private Character character;
+	public Man_MachinePlayer(Character character)
 	{
-		base.Awake();
+		this.character = character;
 	}
 	private int[,] offsetArray = new int[8, 2] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 }, { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
 	public void Man_MachineFindChessTran(ref int[][] boardChessArrays, int pieceType)
@@ -40,7 +41,6 @@ public class Man_MachinePlayer : Singleton<Man_MachinePlayer>
 				}
 			}
 		}
-		Debug.Log("Max" + max);
 		if (max <= 0)
 		{
 			bool flag = false;
@@ -55,7 +55,7 @@ public class Man_MachinePlayer : Singleton<Man_MachinePlayer>
 						{
 							if ((x + offsetArray[i, 0] >= 0) && (x + offsetArray[i, 0] < 8) && (y + offsetArray[i, 1] < 8) && (y + offsetArray[i, 1] >= 0))
 							{
-								if (boardChessArrays[x + offsetArray[i, 0]][y + offsetArray[i, 1]] == pieceType)
+								if (boardChessArrays[x + offsetArray[i, 0]][y + offsetArray[i, 1]] == 0)
 								{
 									int xOffset = offsetArray[i, 0] * 2;
 									int yOffset = offsetArray[i, 1] * 2;
@@ -69,9 +69,7 @@ public class Man_MachinePlayer : Singleton<Man_MachinePlayer>
 										else if (boardChessArrays[x + xOffset][y + yOffset] == 0)
 										{
 											transList.Add((x + offsetArray[i, 0]).ToString() + ',' + (y + offsetArray[i, 1]).ToString());
-											Debug.Log(transList.Count);
 										}
-
 									}
 
 								}
@@ -99,9 +97,9 @@ public class Man_MachinePlayer : Singleton<Man_MachinePlayer>
 							}
 						}
 					}
-					int randomNum = Random.Range(0, transList.Count);
-					maxStr = transList[randomNum];
 				}
+				int randomNum = Random.Range(0, transList.Count);
+				maxStr = transList[randomNum];
 			}
 		}
 		boardChessArrays[int.Parse(maxStr.Split(',')[0])][int.Parse(maxStr.Split(',')[1])] = pieceType;

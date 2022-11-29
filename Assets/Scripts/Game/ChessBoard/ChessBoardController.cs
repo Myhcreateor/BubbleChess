@@ -10,6 +10,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public int firstScore;
 	public int secondScore;
 	public List<GameObject> piecesList;
+	public GameMode gameMode;
 	//计算分数的数组
 	public int[][] chessPieceArrays = new int[8][];
 	private int[][] transposeArrays = new int[8][];
@@ -22,7 +23,10 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		InitChessPieceArrays();
 		piecesList = chessBoardModel.piecesList;
 	}
-
+	private void Start()
+	{
+		gameMode = GameController.Instance.gameMode;
+	}
 	public Transform GetChessBoardGridTransform()
 	{
 		return transform.Find("ChessBoardGridPraret");

@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &812825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812827}
+  - component: {fileID: 812826}
+  m_Layer: 0
+  m_Name: ZhiZhe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &812826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3a72b7fef24b94999c2156a914f52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &812827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 865.6193, y: 589.78125, z: -49.601925}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5013489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,6 +2265,7 @@ MonoBehaviour:
   firstScore: 0
   secondScore: 0
   piecesList: []
+  gameMode: 0
 --- !u!114 &319588571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11966,7 +12010,6 @@ GameObject:
   - component: {fileID: 1803966729}
   - component: {fileID: 1803966728}
   - component: {fileID: 1803966730}
-  - component: {fileID: 1803966731}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -12012,20 +12055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1c16762a99098418d13e25335d6a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundNum: 15
+  roundNum: 20
   gameMode: 0
---- !u!114 &1803966731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803966727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd986820b2ae2c9429b5b0791b2c7552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  characterModel: {fileID: 0}
 --- !u!1 &1804211687
 GameObject:
   m_ObjectHideFlags: 0

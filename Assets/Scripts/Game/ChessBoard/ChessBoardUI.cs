@@ -140,16 +140,12 @@ public class ChessBoardUI : MonoBehaviour
 			twoSideRoundNum++;
 			chessBoardController.isRoundOver(twoSideRoundNum);
 		}
-		else if (GameController.Instance.gameMode == GameMode.Man_Machine)
+		else if (chessBoardController.gameMode == GameMode.Man_Machine)
 		{
-			//如果目前是你的回合则下棋，如果是人机的回合，人机会自己下到合适的位置，假设人机对战你必定是先手
+			//如果目前是你的回合则下棋，如果是人机的回合，人机会自己下到合适的位置，目前假设人机对战你必定是先手
 			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (twoSideRoundNum % 2) + 1);
 			EventHandler.CallUpdateChessBoardEvent();
-			//twoSideRoundNum += 1;
-			//Man_MachinePlayer.Instance.Man_MachineFindChessTran(ref chessBoardController.chessPieceArrays, twoSideRoundNum);
-			//EventHandler.CallUpdateChessBoardEvent();
-
-			Man_MachinePlayer.Instance.Man_MachineFindChessTran(ref chessBoardController.chessPieceArrays, 2);
+			GameController.Instance. Man_MachinePlayerPlayChess(ref chessBoardController.chessPieceArrays, 2);
 			EventHandler.CallUpdateChessBoardEvent();
 			twoSideRoundNum += 2;
 			chessBoardController.isRoundOver(twoSideRoundNum);
