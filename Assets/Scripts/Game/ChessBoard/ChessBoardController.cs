@@ -7,8 +7,8 @@ using DG.Tweening;
 public class ChessBoardController : Singleton<ChessBoardController>
 {
 	public ChessBoardModel chessBoardModel;
-	public int blackScore;
-	public int writeScore;
+	public int firstScore;
+	public int secondScore;
 	public List<GameObject> piecesList;
 	//计算分数的数组
 	public int[][] chessPieceArrays = new int[8][];
@@ -54,8 +54,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	}
 	public void NewStartGame()
 	{
-		blackScore = 0;
-		writeScore = 0;
+		firstScore = 0;
+		secondScore = 0;
 		EventHandler.CallNewStartGameEvent();
 		InitChessPieceArrays();
 	}
@@ -67,7 +67,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		{
 			//游戏结束
 			EventHandler.CallGameOverEvent();
-			UIManager.Instance.ShowGameOverPanel(blackScore, writeScore);
+			UIManager.Instance.ShowGameOverPanel(firstScore, secondScore);
 			return true;
 		}
 		return false;
@@ -83,8 +83,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	/// </summary>
 	public void CalculateScore()
 	{
-		blackScore = 0;
-		writeScore = 0;
+		firstScore = 0;
+		secondScore = 0;
 		for (int index = 0; index < 8; index++)
 		{
 			CalculateLineScore(chessPieceArrays[index]);
@@ -108,8 +108,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	}
 	public int CalculateScoreGap(int type)
 	{
-		blackScore = 0;
-		writeScore = 0;
+		firstScore = 0;
+		secondScore = 0;
 		for (int index = 0; index < 8; index++)
 		{
 			CalculateLineScore(chessPieceArrays[index]);
@@ -131,7 +131,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 			CalculateLineScore(transposeReversalArray[index]);
 		}
 
-		return type == 1 ? blackScore - writeScore : writeScore - blackScore;
+		return (type == 1) ? firstScore - secondScore : secondScore - firstScore;
 	}
 	//反转数组
 	public int[][] ReversalArray(int[][] arr)
@@ -204,11 +204,11 @@ public class ChessBoardController : Singleton<ChessBoardController>
 			s += line[i].ToString();
 		}
 		s += '0';
-		blackScore += CheckOneLine(s)[0];
-		writeScore += CheckOneLine(s)[1];
+		firstScore += CheckOneLine(s)[0];
+		secondScore += CheckOneLine(s)[1];
 		//Debug.Log(s);
 		//UI显示分数
-		EventHandler.CallShowScoreEvent(blackScore,writeScore);
+		EventHandler.CallShowScoreEvent(firstScore,secondScore);
 	}
 
 	public int[] CheckOneLine(string line)

@@ -2219,8 +2219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessBoardModel: {fileID: 11400000, guid: bc22cb28653422444bd1ea4c03b57afb, type: 2}
-  firstScore: 0
-  secondScore: 0
+  blackScore: 0
+  writeScore: 0
   piecesList: []
 --- !u!114 &319588571
 MonoBehaviour:
@@ -2235,6 +2235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 0}
+  pieceType: 0
   allPiecesList: []
 --- !u!1 &325400354
 GameObject:
@@ -11966,7 +11967,6 @@ GameObject:
   - component: {fileID: 1803966729}
   - component: {fileID: 1803966728}
   - component: {fileID: 1803966730}
-  - component: {fileID: 1803966731}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -12013,19 +12013,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundNum: 15
-  gameMode: 0
---- !u!114 &1803966731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1803966727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd986820b2ae2c9429b5b0791b2c7552, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1804211687
 GameObject:
   m_ObjectHideFlags: 0

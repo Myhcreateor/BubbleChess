@@ -7,7 +7,8 @@ public class ChessBoardUI : MonoBehaviour
 {
 	public Text debugText;
 	private Transform ChessBoardPieces;
-	public int pieceType = 0;
+	private int twoSideRoundNum = 0;
+	
 	public List<GameObject> allPiecesList;
 	private ChessBoardController chessBoardController;
 	// Start is called before the first frame update
@@ -110,12 +111,12 @@ public class ChessBoardUI : MonoBehaviour
 
 	private void OnNewStartGameEvent()
 	{
-		pieceType = 0;
+		twoSideRoundNum = 0;
 		for (int i = 0; i < ChessBoardPieces.childCount; i++)
 		{
 			Destroy(ChessBoardPieces.GetChild(i).gameObject); ;
 		}
-		EventHandler.CallUpdateDebugEvent(chessBoardController.RamainingRound(pieceType));
+		EventHandler.CallUpdateDebugEvent(chessBoardController.RamainingRound(twoSideRoundNum));
 	}
 
 	private void OnUpdateDebugEvent(int index)
@@ -132,10 +133,28 @@ public class ChessBoardUI : MonoBehaviour
 
 	private void OnGenerateChessEvent(GameObject go)
 	{
-		chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (pieceType % 2) + 1);
-		EventHandler.CallUpdateChessBoardEvent();
-		pieceType++;
-		chessBoardController.isRoundOver(pieceType);
+		if (GameController.Instance.gameMode == GameMode.Test)
+		{
+			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (twoSideRoundNum % 2) + 1);
+			EventHandler.CallUpdateChessBoardEvent();
+			twoSideRoundNum++;
+			chessBoardController.isRoundOver(twoSideRoundNum);
+		}
+		else if (GameController.Instance.gameMode == GameMode.Man_Machine)
+		{
+			//如果目前是你的回合则下棋，如果是人机的回合，人机会自己下到合适的位置，假设人机对战你必定是先手
+			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (twoSideRoundNum % 2) + 1);
+			EventHandler.CallUpdateChessBoardEvent();
+			//twoSideRoundNum += 1;
+			//Man_MachinePlayer.Instance.Man_MachineFindChessTran(ref chessBoardController.chessPieceArrays, twoSideRoundNum);
+			//EventHandler.CallUpdateChessBoardEvent();
+
+			Man_MachinePlayer.Instance.Man_MachineFindChessTran(ref chessBoardController.chessPieceArrays, 2);
+			EventHandler.CallUpdateChessBoardEvent();
+			twoSideRoundNum += 2;
+			chessBoardController.isRoundOver(twoSideRoundNum);
+		}
+
 	}
 	private void OnShowScoreEvent(int index1, int index2)
 	{

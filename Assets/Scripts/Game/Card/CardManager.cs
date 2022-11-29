@@ -12,11 +12,18 @@ public class CardManager : Singleton<CardManager>
 	}
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
+		if (GameController.Instance.gameMode == GameMode.Test)
 		{
-			//生成卡牌
-			GenerateRandomCard();
+			if (Input.GetKeyDown(KeyCode.Q))
+			{
+				//生成卡牌
+				GenerateRandomCard();
+			}
+		}else if (GameController.Instance.gameMode == GameMode.Man_Machine)
+		{
+			//人机对战开局生成设定好的固定卡牌
 		}
+		
 	}
 	//随机在cardModel里生成一张牌
 	public void GenerateRandomCard()
