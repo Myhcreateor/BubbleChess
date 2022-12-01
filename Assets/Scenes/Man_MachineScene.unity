@@ -2219,9 +2219,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessBoardModel: {fileID: 11400000, guid: bc22cb28653422444bd1ea4c03b57afb, type: 2}
-  blackScore: 0
-  writeScore: 0
+  firstScore: 0
+  secondScore: 0
   piecesList: []
+  gameMode: 0
 --- !u!114 &319588571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2235,7 +2236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 0}
-  pieceType: 0
   allPiecesList: []
 --- !u!1 &325400354
 GameObject:
@@ -4078,6 +4078,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524112771}
   m_CullTransparentMesh: 1
+--- !u!1 &541171202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541171204}
+  - component: {fileID: 541171203}
+  m_Layer: 0
+  m_Name: Man_MachinePlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &541171203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541171202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd986820b2ae2c9429b5b0791b2c7552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &541171204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541171202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -225.67426, y: 426.00067, z: -464.7464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1803966729}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &547444554
 GameObject:
   m_ObjectHideFlags: 0
@@ -11969,7 +12012,7 @@ GameObject:
   - component: {fileID: 1803966730}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11996,7 +12039,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 856.74915, y: 345.30908, z: -5.7833996}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 541171204}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12013,6 +12057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundNum: 15
+  gameMode: 0
+  characterModel: {fileID: 11400000, guid: 75a3a9918b0df3c48ab46ae884a85e6b, type: 2}
 --- !u!1 &1804211687
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class Character_ZhiZhe : Character
 	{
 		this.boardChessArrays = chessPieceArrays;
 		this.pieceType = pieceType;
-		PassiveSkill();
+		isReleaseSkill = true;
 	}
 
 	public override void PassiveSkill()

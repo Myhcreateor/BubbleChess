@@ -12,17 +12,24 @@ public class GameController : Singleton<GameController>
 	private void Awake()
 	{
 		base.Awake();
+		man_MachinePlayer = transform.Find("Man_MachinePlayer").GetComponent<Man_MachinePlayer>();
 		if (gameMode == GameMode.Man_Machine)
 		{
-			CharacterDetails characterDetails = characterModel.CharacterList[0];
+			CharacterDetails characterDetails = characterModel.CharacterList[1];
 			if (characterDetails.characterName==CharacterName.ZhiZhe)
 			{
-				man_MachinePlayer = new Man_MachinePlayer(new Character_ZhiZhe(ref ChessBoardController.Instance.chessPieceArrays, 2));
+				Character c = new Character_ZhiZhe(ref ChessBoardController.Instance.chessPieceArrays, 2);
+				man_MachinePlayer.SetCharacter(c);
+			}
+			else if (characterDetails.characterName == CharacterName.HuoYanNvWu)
+			{
+				Character c = new Character_HuoYanNvWu(ref ChessBoardController.Instance.chessPieceArrays, 2);
+				man_MachinePlayer.SetCharacter(c);
 			}
 			 
 		}
 	}
-	
+
 	public void Man_MachinePlayerPlayChess(ref int[][] boardChessArrays, int pieceType)
 	{
 		man_MachinePlayer.Man_MachineFindChessTran(ref boardChessArrays,  pieceType);

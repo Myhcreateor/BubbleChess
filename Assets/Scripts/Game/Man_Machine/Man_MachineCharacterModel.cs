@@ -21,11 +21,12 @@ public class CharacterDetails
 {
     public CharacterName characterName;
     public int id;
+    public Sprite characterSprite;
     public int attackNum;
     public string description;//½ÇÉ«µÄÃèÊö
     public GameObject characterGo;
 }
 public enum CharacterName
 {
-    ZhiZhe,CiKe
+    ZhiZhe,CiKe,HuoYanNvWu
 }

@@ -2,14 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Man_MachinePlayer 
+public class Man_MachinePlayer :MonoBehaviour
 {
 	private Character character;
-	public Man_MachinePlayer(Character character)
+	private int[,] offsetArray = new int[8, 2] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 }, { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	public void SetCharacter(Character character)
 	{
 		this.character = character;
 	}
-	private int[,] offsetArray = new int[8, 2] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 }, { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	public Character GetCharacter()
+	{
+		return character;
+	}
+	public void Update()
+	{
+		if (character.isReleaseSkill)
+		{
+			character.PassiveSkill();
+			character. isReleaseSkill = false;
+		}
+	}
 	public void Man_MachineFindChessTran(ref int[][] boardChessArrays, int pieceType)
 	{
 		int max = int.MinValue;
@@ -102,8 +114,49 @@ public class Man_MachinePlayer
 				maxStr = transList[randomNum];
 			}
 		}
+		int maxStrx = int.Parse(maxStr.Split(',')[0]);
+		int maxStry = int.Parse(maxStr.Split(',')[1]);
 		boardChessArrays[int.Parse(maxStr.Split(',')[0])][int.Parse(maxStr.Split(',')[1])] = pieceType;
+
+		if (character.isFiveConsecutive)
+		{
+			character.isReleaseSkill= isGeneratedFiveConsecutive(boardChessArrays, maxStrx, maxStry, pieceType);
+		}
+		 
+	}
+
+	public bool isGeneratedFiveConsecutive(int[][] boardChessArrays, int x, int y, int pieceType)
+	{
+		int[,] offsetArray = new int[4, 2] { { 1, 0 }, { 0, 1 }, { 1, 1 }, { 1, -1 } };
+		for (int k = 0; k < offsetArray.GetLength(0); k++)
+		{
+			int length = 1;
+			int offsetx = offsetArray[k, 0];
+			int offsety = offsetArray[k, 1];
+
+			while ((x + offsetx >= 0) && (x + offsetx < 8) && (y + offsety < 8) && (y + offsety >= 0) && boardChessArrays[x + offsetx][y + offsety] == pieceType)
+			{
+				offsetx += offsetArray[k, 0];
+				offsety += offsetArray[k, 1];
+				length++;
+			}
+			offsetx = -offsetArray[k, 0];
+			offsety = -offsetArray[k, 1];
+			while ((x + offsetx >= 0) && (x + offsetx < 8) && (y + offsety < 8) && (y + offsety >= 0) && boardChessArrays[x + offsetx][y + offsety] == pieceType)
+			{
+				offsetx -= offsetArray[k, 0];
+				offsety -= offsetArray[k, 1];
+				length++;
+			}
+			if (length >= 5)
+			{
+				return true;
+			}
+		}
+		return false;
+
 	}
 }
+
 
 
