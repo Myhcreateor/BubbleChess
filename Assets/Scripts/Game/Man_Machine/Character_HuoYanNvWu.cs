@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class Character_HuoYanNvWu : Character
 {
 	//  被动技能狂热
@@ -25,21 +26,17 @@ public class Character_HuoYanNvWu : Character
 	{
 		if (Random.Range(0, 2) == 0)
 		{
-			Debug.Log("释放了技能蒸发");
+			ShowSkillImage("ZhengFa");
 			SkillEvaporation(ref boardChessArrays, pieceType);
 		}
 		else
 		{
-			Debug.Log("释放了技能狂热");
+			ShowSkillImage("KuangRe");
 			SkillCraze(ref boardChessArrays, pieceType);
 		}
-		
 		EventHandler.CallUpdateChessBoardEvent();
 	}
-	public bool IsReleaseSkill(ref int[][] chessPieceArrays, int pieceType)
-	{
-		return false;
-	}
+
 	public void SkillCraze(ref int[][] chessPieceArrays, int pieceType)
 	{
 		for(int i=0;i< 8; i++)

@@ -22,6 +22,7 @@ public class Character_ZhiZhe : Character
 		{
 			boardChessArrays[randomNumx][randomNumy] = pieceType;
 		}
+		ShowSkillImage("XianGong");
 		EventHandler.CallUpdateChessBoardEvent();
 	}
 }

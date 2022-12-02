@@ -6,6 +6,7 @@ public class Man_MachinePlayer :MonoBehaviour
 {
 	private Character character;
 	private int[,] offsetArray = new int[8, 2] { { -1, 0 }, { 1, 0 }, { 0, 1 }, { 0, -1 }, { 1, 1 }, { -1, 1 }, { -1, -1 }, { 1, -1 } };
+	private int roundNum;
 	public void SetCharacter(Character character)
 	{
 		this.character = character;
@@ -117,15 +118,20 @@ public class Man_MachinePlayer :MonoBehaviour
 		int maxStrx = int.Parse(maxStr.Split(',')[0]);
 		int maxStry = int.Parse(maxStr.Split(',')[1]);
 		boardChessArrays[int.Parse(maxStr.Split(',')[0])][int.Parse(maxStr.Split(',')[1])] = pieceType;
-
 		if (character.isFiveConsecutive)
 		{
-			character.isReleaseSkill= isGeneratedFiveConsecutive(boardChessArrays, maxStrx, maxStry, pieceType);
+			character.isReleaseSkill= IsGeneratedFiveConsecutive(boardChessArrays, maxStrx, maxStry, pieceType);
 		}
-		 
+		if (character.isFiveRoundDetection)
+		{
+			if (ChessBoardController.Instance.twoSideRoundNum!=0&&(ChessBoardController.Instance.twoSideRoundNum / 2 % 5) == 0)
+			{
+				character.isReleaseSkill = true;
+			}
+		}
 	}
 
-	public bool isGeneratedFiveConsecutive(int[][] boardChessArrays, int x, int y, int pieceType)
+	public bool IsGeneratedFiveConsecutive(int[][] boardChessArrays, int x, int y, int pieceType)
 	{
 		int[,] offsetArray = new int[4, 2] { { 1, 0 }, { 0, 1 }, { 1, 1 }, { 1, -1 } };
 		for (int k = 0; k < offsetArray.GetLength(0); k++)
