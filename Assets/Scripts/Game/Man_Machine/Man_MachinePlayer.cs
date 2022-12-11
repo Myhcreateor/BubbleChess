@@ -10,6 +10,10 @@ public class Man_MachinePlayer :MonoBehaviour
 	public void SetCharacter(Character character)
 	{
 		this.character = character;
+		if (character.isGameStartDetection ==true)
+		{
+			character.isReleaseSkill = true;
+		}
 	}
 	public Character GetCharacter()
 	{
@@ -17,7 +21,7 @@ public class Man_MachinePlayer :MonoBehaviour
 	}
 	public void Update()
 	{
-		if (character.isReleaseSkill)
+		if (GameController.Instance.gameMode==GameMode.Man_Machine && character.isReleaseSkill)
 		{
 			character.PassiveSkill();
 			character. isReleaseSkill = false;

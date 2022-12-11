@@ -61,8 +61,20 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	{
 		firstScore = 0;
 		secondScore = 0;
-		EventHandler.CallNewStartGameEvent();
 		InitChessPieceArrays();
+		EventHandler.CallUpdateChessBoardEvent();
+		EventHandler.CallNewStartGameEvent();
+		GameController.Instance.ChooseMan_MachinePlayer(GameController.Instance.currentCharacterIndex);
+	}
+	public void NextMan_MachineGame()
+	{
+		firstScore = 0;
+		secondScore = 0;
+		InitChessPieceArrays();
+		EventHandler.CallUpdateChessBoardEvent();
+		EventHandler.CallNewStartGameEvent();
+		GameController.Instance.currentCharacterIndex++;
+		GameController.Instance. ChooseMan_MachinePlayer(GameController.Instance.currentCharacterIndex);
 	}
 	//判断回合数是否结束
 	public bool isRoundOver(int pieceNum)
@@ -72,7 +84,14 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		{
 			//游戏结束
 			EventHandler.CallGameOverEvent();
-			UIManager.Instance.ShowGameOverPanel(firstScore, secondScore);
+			if (gameMode == GameMode.Man_Machine)
+			{
+				Man_MachineUIManager.Instance.ShowGameOverPanel(firstScore, secondScore);
+			}
+			else 
+			{
+				UIManager.Instance.ShowGameOverPanel(firstScore, secondScore);
+			}
 			return true;
 		}
 		return false;

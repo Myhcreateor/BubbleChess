@@ -9,6 +9,7 @@ public  class Character : MonoBehaviour
     public bool isReleaseSkill = false;
     public bool isFiveConsecutive = false;
     public bool isFiveRoundDetection = false;
+    public bool isGameStartDetection = false;
     public virtual void PassiveSkill()
     {
 
