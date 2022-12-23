@@ -115,6 +115,7 @@ public class ChessBoardUI : MonoBehaviour
 		{
 			Destroy(ChessBoardPieces.GetChild(i).gameObject); ;
 		}
+		CardManager.Instance.RemoveAllCard();
 		EventHandler.CallUpdateDebugEvent(chessBoardController.RamainingRound(chessBoardController.twoSideRoundNum));
 	}
 
@@ -145,6 +146,12 @@ public class ChessBoardUI : MonoBehaviour
 			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (chessBoardController.twoSideRoundNum % 2) + 1);
 			EventHandler.CallUpdateChessBoardEvent();
 			chessBoardController.twoSideRoundNum += 2;
+			if (chessBoardController.twoSideRoundNum % 10 == 0)
+			{
+				//人机模式增加一张手牌，目前是每五回合增加一张手牌
+				//Todo:需要完成卡牌的消费
+				Man_MachineCardManager.Instance.isAddCardToHand = true;
+			}
 			GameController.Instance. Man_MachinePlayerPlayChess(ref chessBoardController.chessPieceArrays, 2);
 			EventHandler.CallUpdateChessBoardEvent();
 			chessBoardController.isRoundOver(chessBoardController.twoSideRoundNum);

@@ -36,7 +36,6 @@ public class GameController : Singleton<GameController>
 		if (characterDetails.characterName == CharacterName.ZhiZhe)
 		{
 			c = new Character_ZhiZhe(ref ChessBoardController.Instance.chessPieceArrays, 2);
-			Debug.Log("有新的构造函数生成");
 		}
 		else if (characterDetails.characterName == CharacterName.HuoYanNvWu)
 		{

@@ -36,7 +36,11 @@ public class HandCardLayout : Singleton<HandCardLayout>
         mCardList.Remove(card);
         SetLayout();
     }
-
+    public void RemoveAllCard()
+    {
+        mCardList.Clear();
+        SetLayout();
+    }
     private void SetLineLayout()
 	{
         mTargetPositions.Clear();
