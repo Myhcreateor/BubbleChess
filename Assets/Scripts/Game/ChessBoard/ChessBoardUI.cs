@@ -133,7 +133,7 @@ public class ChessBoardUI : MonoBehaviour
 
 	private void OnGenerateChessEvent(GameObject go)
 	{
-		if (GameController.Instance.gameMode == GameMode.Test)
+		if (GameController.Instance.gameMode == GameMode.Test|| GameController.Instance.gameMode == GameMode.Stand_Alone)
 		{
 			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (chessBoardController.twoSideRoundNum % 2) + 1);
 			EventHandler.CallUpdateChessBoardEvent();

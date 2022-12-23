@@ -21,9 +21,12 @@ public class GameController : Singleton<GameController>
 			currentCharacterIndex = 0;
 			man_MachinePlayer = transform.Find("Man_MachinePlayer").GetComponent<Man_MachinePlayer>();
 			ChooseMan_MachinePlayer(currentCharacterIndex);
+		}else if (gameMode == GameMode.Stand_Alone)
+		{
+			//当前模式是双人本机对战模式
 		}
 	}
-	//Todo:需要在人机模式将人机角色串联起来
+	//在人机模式将人机角色串联起来
 	public void ChooseMan_MachinePlayer(int index)
 	{
 		CharacterDetails characterDetails = characterModel.CharacterList[index];

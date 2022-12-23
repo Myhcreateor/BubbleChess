@@ -2223,6 +2223,7 @@ MonoBehaviour:
   secondScore: 0
   piecesList: []
   gameMode: 0
+  twoSideRoundNum: 0
 --- !u!114 &319588571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,7 +3115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardModel_SO: {fileID: 11400000, guid: df925bcdc84b7c44e8ed3b2c8fc81c1a, type: 2}
-  handPlacementTran: {fileID: 1159128861}
+  handCardPlacementTran: {fileID: 1159128861}
+  isAddCardToHand: 0
 --- !u!4 &400696257
 Transform:
   m_ObjectHideFlags: 0
@@ -12014,6 +12016,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundNum: 20
   gameMode: 3
+  gameState: 0
+  currentCharacterIndex: 0
   characterModel: {fileID: 11400000, guid: 75a3a9918b0df3c48ab46ae884a85e6b, type: 2}
 --- !u!1 &1804211687
 GameObject:

@@ -12,7 +12,7 @@ public  class Character : MonoBehaviour
     public bool isGameStartDetection = false;
     public virtual void PassiveSkill()
     {
-
+        
     }
     public virtual void ShowSkillImage(string skillName)
 	{
