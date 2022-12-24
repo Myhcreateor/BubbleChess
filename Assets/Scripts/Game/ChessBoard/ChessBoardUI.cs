@@ -169,7 +169,7 @@ public class ChessBoardUI : MonoBehaviour
 	}
 
 
-	private void OnGenerateParticleEffectEvent(string s , GameObject go)
+	private void OnGenerateParticleEffectEvent(string s, GameObject go)
 	{
 		Transform trans = chessBoardGridParent.Find(s);
 		if (trans != null)

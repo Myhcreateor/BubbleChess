@@ -7,7 +7,7 @@ TagManager:
   - Floor
   - ChessPiece
   - ChessBoardRegion
-  - FxTemporaire
+  - ShowEnlargedIamge
   layers:
   - Default
   - TransparentFX

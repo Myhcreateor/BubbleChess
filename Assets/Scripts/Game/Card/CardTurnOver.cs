@@ -14,7 +14,7 @@ public enum CardState
 public class CardTurnOver : MonoBehaviour
 {
 
-    public  GameObject cardFront;       //卡牌正面
+    private GameObject cardFront;       //卡牌正面
     private GameObject cardBack;        //卡牌的背面
     public CardState cardState = CardState.Front;  //卡牌当前的状态，是正面还是背面
     public float mTime = 0.4f;
@@ -41,12 +41,10 @@ public class CardTurnOver : MonoBehaviour
     {
         cardBack = transform.Find("CardBack").gameObject;
         cardFront = transform.GetChild(1).gameObject;
-        Debug.Log(cardFront);
         cardFront.GetComponent<Button>().onClick.AddListener(() =>
         {
             Stand_AloneUIManager.Instance.CloseSelectCardPlane();
-            //ToDo:记录下来所选的初始卡牌
-            string s = cardFront.name.Split('_')[1];
+            string s = cardFront.GetComponent<Image>().sprite.name;
             CardManager.Instance.GenerateCardWithName(s);
         });
         Init();

@@ -92,7 +92,7 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
         {
             return;
         }
-        Image enlargedImage = transform.parent.Find("ShowEnlargedIamge").GetComponent<Image>();
+        Image enlargedImage = GameObject.FindGameObjectWithTag("ShowEnlargedIamge").GetComponent<Image>();
         enlargedImage.DOColor(new Color(255, 255, 255, 255), 0.2f);
         enlargedImage.sprite = this.GetComponent<Card>().cardDetails.cardSprite;
         enlargedImage.DOFade(0, 5f);
