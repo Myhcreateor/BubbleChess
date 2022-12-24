@@ -14,11 +14,19 @@ public class Card_ZhiHuan : Card
 		ChessBoardController c = ChessBoardController.Instance;
 		ZhiHuanCommand zhiHuanCommand = new ZhiHuanCommand(ref c.chessPieceArrays, 1, clickTrans);
 		zhiHuanCommand.Execute();
-		EventHandler.CallUpdateChessBoardEvent();
+		if (zhiHuanCommand.isSuccessRelease)
+		{
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+		}
+		Invoke("CallUpdateChessBoardEvent", 0.5f);
 		return zhiHuanCommand.isSuccessRelease;
 	}
 	public override void SetClickTrans(string s)
 	{
 		clickTrans = s;
+	}
+	public void CallUpdateChessBoardEvent()
+	{
+		EventHandler.CallUpdateChessBoardEvent();
 	}
 }

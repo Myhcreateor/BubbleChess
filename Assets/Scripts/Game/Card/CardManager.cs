@@ -18,7 +18,7 @@ public class CardManager : Singleton<CardManager>
 		{
 			if (Input.GetKeyDown(KeyCode.Q))
 			{
-				isAddCardToHand = true; ;
+				isAddCardToHand = true; 
 			}
 			
 		}
@@ -65,7 +65,6 @@ public class CardManager : Singleton<CardManager>
 		if (id != -1)
 		{
 			GameObject go = cardModel_SO.cardList[id].cardPrefabs;
-			Debug.Log(id);
 			if (go != null)
 			{
 				GameObject card = Instantiate(go, cardBoxTran.position, Quaternion.identity, handCardPlacementTran);

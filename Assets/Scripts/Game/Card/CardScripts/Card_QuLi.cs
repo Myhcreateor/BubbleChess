@@ -14,6 +14,10 @@ public class Card_QuLi : Card
 		ChessBoardController c = ChessBoardController.Instance;
 		QuLiCommand QuLiCommand = new QuLiCommand(ref c.chessPieceArrays, 1, clickTrans);
 		QuLiCommand.Execute();
+		if (QuLiCommand.isSuccessRelease)
+		{
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+		}
 		EventHandler.CallUpdateChessBoardEvent();
 		return QuLiCommand.isSuccessRelease;
 	}

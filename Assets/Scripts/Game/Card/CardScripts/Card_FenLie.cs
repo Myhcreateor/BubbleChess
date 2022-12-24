@@ -14,6 +14,10 @@ public class Card_FenLie : Card
 		ChessBoardController c = ChessBoardController.Instance;
 		FenLieCommand fenLieCommand = new FenLieCommand(ref c.chessPieceArrays, 1, clickTrans);
 		fenLieCommand.Execute();
+		if (fenLieCommand.isSuccessRelease)
+		{
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+		}
 		EventHandler.CallUpdateChessBoardEvent();
 		return fenLieCommand.isSuccessRelease;
 	}

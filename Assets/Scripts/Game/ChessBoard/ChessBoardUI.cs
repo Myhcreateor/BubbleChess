@@ -7,7 +7,7 @@ public class ChessBoardUI : MonoBehaviour
 {
 	public Text debugText;
 	private Transform ChessBoardPieces;
-	
+	private Transform chessBoardGridParent;
 	public List<GameObject> allPiecesList;
 	private ChessBoardController chessBoardController;
 	// Start is called before the first frame update
@@ -16,6 +16,7 @@ public class ChessBoardUI : MonoBehaviour
 		chessBoardController = ChessBoardController.Instance;
 		debugText = transform.parent.Find("DebugText").GetComponent<Text>();
 		ChessBoardPieces = transform.Find("ChessBoardPieces");
+		chessBoardGridParent = transform.Find("ChessBoardGridPraret");
 	}
 	private void OnEnable()
 	{
@@ -25,7 +26,10 @@ public class ChessBoardUI : MonoBehaviour
 		EventHandler.UpdateDebugEvent += OnUpdateDebugEvent;
 		EventHandler.NewStartGameEvent += OnNewStartGameEvent;
 		EventHandler.UpdateChessBoardEvent += OnUpdateChessBoardEvent;
+		EventHandler.GenerateParticleEffectEvent += OnGenerateParticleEffectEvent;
 	}
+
+
 	private void OnDisable()
 	{
 		EventHandler.ShowScoreEvent -= OnShowScoreEvent;
@@ -34,6 +38,7 @@ public class ChessBoardUI : MonoBehaviour
 		EventHandler.UpdateDebugEvent -= OnUpdateDebugEvent;
 		EventHandler.NewStartGameEvent -= OnNewStartGameEvent;
 		EventHandler.UpdateChessBoardEvent -= OnUpdateChessBoardEvent;
+		EventHandler.GenerateParticleEffectEvent -= OnGenerateParticleEffectEvent;
 	}
 	private GameObject FindPiecesListWithName(int col,int row)
 	{
@@ -164,4 +169,13 @@ public class ChessBoardUI : MonoBehaviour
 	}
 
 
+	private void OnGenerateParticleEffectEvent(string s , GameObject go)
+	{
+		Transform trans = chessBoardGridParent.Find(s);
+		if (trans != null)
+		{
+			GameObject effectGo = Instantiate(go, trans.position, Quaternion.identity, trans);
+			Destroy(effectGo, 2f);
+		}
+	}
 }

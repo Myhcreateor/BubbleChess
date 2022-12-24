@@ -37,11 +37,11 @@ public class ZhiHuanCommand : ICommand
 			}
 			if (adjoinEnemyPieceList.Count > 0)
 			{
-				isSuccessRelease = true;
 				boardChessArrays[x][y] = emenyType;
 				int randomNum = Random.Range(0, adjoinEnemyPieceList.Count);
 				string s = adjoinEnemyPieceList[randomNum];
 				boardChessArrays[int.Parse(s.Split(',')[0])][int.Parse(s.Split(',')[1])]= pieceType;
+				isSuccessRelease = true;
 			}
 
 		}

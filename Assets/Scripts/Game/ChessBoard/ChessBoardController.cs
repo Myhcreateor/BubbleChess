@@ -36,8 +36,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	{
 		return transform.Find("ChessBoardPieces");
 	}
-
-//初始化棋子数组
+	
+	//初始化棋子数组
 	private void InitChessPieceArrays()
 	{
 		for (int col = 0; col < 8; col++)

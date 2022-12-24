@@ -14,6 +14,10 @@ public class Card_XingYi : Card
 		ChessBoardController c = ChessBoardController.Instance;
 		XingYiCommand xingYiCommand = new XingYiCommand(ref c.chessPieceArrays, 1, clickTrans);
 		xingYiCommand.Execute();
+		if (xingYiCommand.isSuccessRelease)
+		{
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+		}
 		EventHandler.CallUpdateChessBoardEvent();
 		return xingYiCommand.isSuccessRelease;
 	}

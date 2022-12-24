@@ -34,4 +34,9 @@ public class EventHandler : MonoBehaviour
 	{
 		UpdateChessBoardEvent?.Invoke();
 	}
+	public static event Action<string,GameObject> GenerateParticleEffectEvent;
+	public static void CallGenerateParticleEffectEvent(string s, GameObject go)
+	{
+		GenerateParticleEffectEvent?.Invoke(s,go);
+	}
 }

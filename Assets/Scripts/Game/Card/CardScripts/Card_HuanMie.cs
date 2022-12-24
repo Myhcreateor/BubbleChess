@@ -14,6 +14,10 @@ public class Card_HuanMie : Card
 		ChessBoardController c = ChessBoardController.Instance;
 		HuanMieCommand huanMieCommand = new HuanMieCommand(ref c.chessPieceArrays, 1, clickTrans);
 		huanMieCommand.Execute();
+		if (huanMieCommand.isSuccessRelease)
+		{
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+		}
 		return huanMieCommand.isSuccessRelease;
 	}
 	public override void  SetClickTrans(string s)

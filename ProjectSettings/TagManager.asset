@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - ChessPiece
   - ChessBoardRegion
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 1093653013
+    locked: 0
+  - name: AforeGround
+    uniqueID: 1026327033
     locked: 0

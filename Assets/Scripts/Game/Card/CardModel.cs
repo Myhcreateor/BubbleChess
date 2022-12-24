@@ -25,6 +25,7 @@ public class CardDetails
     public int costNum;//消耗魔晶数
     public int roundUpNum;//多少回合魔晶消耗上升
     public string description;//卡牌的描述
+    public GameObject particleEffect;//释放的时候的粒子效果
 }
 public enum CardName
 {
