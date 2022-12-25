@@ -34,22 +34,13 @@ public class CardManager : Singleton<CardManager>
 	{
 		int randomNum = Random.Range(0, cardModel_SO.cardList.Count);
 		GameObject go =  cardModel_SO.cardList[randomNum].cardPrefabs;
-		if (go != null)
-		{
-			GameObject card=  Instantiate(go, cardBoxTran.position, Quaternion.identity, handCardPlacementTran);
-			//ToDo:增加卡牌翻转的过渡动画
-			HandCardLayout.Instance.AddCard(card.transform);
-		}
+		GenerateCard(go);
 	}
 	//通过Id生成一张牌
 	public void GenerateCardWithId(int id)
 	{
 		GameObject go = cardModel_SO.cardList[id].cardPrefabs;
-		if (go != null)
-		{
-			GameObject card = Instantiate(go, cardBoxTran.position, Quaternion.identity, handCardPlacementTran);
-			HandCardLayout.Instance.AddCard(card.transform);
-		}
+		GenerateCard(go);
 	}
 	//通过name生成一张牌
 	public void GenerateCardWithName(string name)
@@ -67,8 +58,7 @@ public class CardManager : Singleton<CardManager>
 			GameObject go = cardModel_SO.cardList[id].cardPrefabs;
 			if (go != null)
 			{
-				GameObject card = Instantiate(go, cardBoxTran.position, Quaternion.identity, handCardPlacementTran);
-				HandCardLayout.Instance.AddCard(card.transform);
+				GenerateCard(go);
 			}
 		}
 		else
@@ -79,10 +69,55 @@ public class CardManager : Singleton<CardManager>
 	//弃掉所有手牌
 	public void RemoveAllCard()
 	{
-		HandCardLayout.Instance.RemoveAllCard();
-		for (int i = 0; i < handCardPlacementTran.childCount; i++)
+		if (GameController.Instance.gameMode != GameMode.Stand_Alone)
 		{
-			Destroy(handCardPlacementTran.GetChild(i).gameObject); 
+			HandCardLayout.Instance.RemoveAllCard();
+			for (int i = 0; i < handCardPlacementTran.childCount; i++)
+			{
+				Destroy(handCardPlacementTran.GetChild(i).gameObject);
+			}
+		}
+		else
+		{
+			HandCardLayout.Instance.RemoveAllCard();
+			Transform trans = handCardPlacementTran.Find("Player1");
+			for (int i = 0; i < trans.childCount; i++)
+			{
+				Destroy(handCardPlacementTran.GetChild(i).gameObject);
+			}
+		    trans = handCardPlacementTran.Find("Player2");
+			for (int i = 0; i < trans.childCount; i++)
+			{
+				Destroy(handCardPlacementTran.GetChild(i).gameObject);
+			}
+		}
+	}
+	private void GenerateCard(GameObject go)
+	{
+		if (go != null)
+		{
+			if (GameController.Instance.gameMode != GameMode.Stand_Alone)
+			{
+				GameObject card = Instantiate(go, cardBoxTran.position, Quaternion.identity, handCardPlacementTran);
+				//ToDo:增加卡牌翻转的过渡动画
+				HandCardLayout.Instance.AddCard(card.transform);
+			}
+			else
+			{
+				Transform trans;
+				if (ChessBoardController.Instance.GetPlayer() == Player.One)
+				{
+					trans = handCardPlacementTran.Find("Player1");
+				}
+				else
+				{
+					trans = handCardPlacementTran.Find("Player2");
+				}
+				GameObject card = Instantiate(go, cardBoxTran.position, Quaternion.identity, trans);
+				//ToDo:增加卡牌翻转的过渡动画
+				HandCardLayout.Instance.AddCard(card.transform);
+			}
+
 		}
 	}
 }

@@ -12,6 +12,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public List<GameObject> piecesList;
 	public GameMode gameMode;
 	public int twoSideRoundNum = 0;
+	private Player player;
 	//计算分数的数组
 	public int[][] chessPieceArrays = new int[8][];
 	private int[][] transposeArrays = new int[8][];
@@ -24,9 +25,14 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		InitChessPieceArrays();
 		piecesList = chessBoardModel.piecesList;
 	}
+
 	private void Start()
 	{
 		gameMode = GameController.Instance.gameMode;
+		if (gameMode == GameMode.Stand_Alone)
+		{
+			player = Player.One;
+		}
 	}
 	public Transform GetChessBoardGridTransform()
 	{
@@ -36,7 +42,21 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	{
 		return transform.Find("ChessBoardPieces");
 	}
-	
+	public void HandOffPlayer()
+	{
+		if (player == Player.One)
+		{
+			player = Player.Two;
+		}
+		else
+		{
+			player = Player.One;
+		}
+	}
+	public Player GetPlayer()
+	{
+		return player;
+	}
 	//初始化棋子数组
 	private void InitChessPieceArrays()
 	{
@@ -292,4 +312,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		return new int[2] { blackScore, writeScore };
 	}
 
+}
+public enum Player
+{
+	One ,Two
 }

@@ -138,7 +138,7 @@ public class ChessBoardUI : MonoBehaviour
 
 	private void OnGenerateChessEvent(GameObject go)
 	{
-		if (GameController.Instance.gameMode == GameMode.Test|| GameController.Instance.gameMode == GameMode.Stand_Alone)
+		if (GameController.Instance.gameMode == GameMode.Test)
 		{
 			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (chessBoardController.twoSideRoundNum % 2) + 1);
 			EventHandler.CallUpdateChessBoardEvent();
@@ -159,6 +159,13 @@ public class ChessBoardUI : MonoBehaviour
 			}
 			GameController.Instance. Man_MachinePlayerPlayChess(ref chessBoardController.chessPieceArrays, 2);
 			EventHandler.CallUpdateChessBoardEvent();
+			chessBoardController.isRoundOver(chessBoardController.twoSideRoundNum);
+		}else if(GameController.Instance.gameMode == GameMode.Stand_Alone)
+		{
+			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (chessBoardController.twoSideRoundNum % 2) + 1);
+			chessBoardController.HandOffPlayer();
+			EventHandler.CallUpdateChessBoardEvent();
+			chessBoardController.twoSideRoundNum++;
 			chessBoardController.isRoundOver(chessBoardController.twoSideRoundNum);
 		}
 

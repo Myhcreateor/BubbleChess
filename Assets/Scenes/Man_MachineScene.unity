@@ -3116,6 +3116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardModel_SO: {fileID: 11400000, guid: df925bcdc84b7c44e8ed3b2c8fc81c1a, type: 2}
   handCardPlacementTran: {fileID: 1061092126}
+  cardBoxTran: {fileID: 1525295776}
   isAddCardToHand: 0
 --- !u!4 &400696257
 Transform:
