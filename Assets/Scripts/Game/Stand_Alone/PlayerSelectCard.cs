@@ -8,17 +8,28 @@ public class PlayerSelectCard : MonoBehaviour
 	public Image[] mCard_Image;
 	public CardModel cardModel;
     private List<CardDetails> randomSequenceList = new List<CardDetails>();
+    public Text titleText;
     private int cardListCount;
 	private void Awake()
 	{
-		cardListCount = cardModel.cardList.Count;
-        randomSequenceList =GetRandomSequence(cardModel.cardList, cardListCount);
+        RefleshSelectCard();
+
+    }
+    public void RefleshSelectCard()
+	{
+        cardListCount = cardModel.cardList.Count;
+        randomSequenceList = GetRandomSequence(cardModel.cardList, cardListCount);
         //随机选出三张牌，玩家选择一张加入手牌
-        for(int i = 0; i < 3; i++)
-		{
+        for (int i = 0; i < 3; i++)
+        {
             mCard_Image[i].sprite = randomSequenceList[i].cardSprite;
         }
-	}
+    }
+    public void ChangeTitleText()
+	{
+        titleText.text = "Player2选择卡牌";
+
+    }
     public static List<CardDetails> GetRandomSequence(List<CardDetails> cardList, int count)
     {
         List<CardDetails> output = new List<CardDetails>();

@@ -13,7 +13,21 @@ public class ZhiHuanCommand : ICommand
 	public ZhiHuanCommand(ref int[][] chessPieceArrays, int pieceType, string clickTrans)
 	{
 		this.boardChessArrays = chessPieceArrays;
-		this.pieceType = pieceType;
+		if (GameController.Instance.gameMode != GameMode.Stand_Alone)
+		{
+			this.pieceType = pieceType;
+		}
+		else
+		{
+			if (ChessBoardController.Instance.GetPlayer() == Player.One)
+			{
+				this.pieceType = 1;
+			}
+			else
+			{
+				this.pieceType = 2;
+			}
+		}
 		this.clickTrans = clickTrans;
 	}
 	public void Execute()

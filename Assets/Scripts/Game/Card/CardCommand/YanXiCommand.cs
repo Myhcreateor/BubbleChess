@@ -11,8 +11,22 @@ public class YanXiCommand : ICommand
 	public YanXiCommand(ref int[][] chessPieceArrays, int pieceType)
     {
         this.boardChessArrays = chessPieceArrays;
-        this.pieceType = pieceType;
-    }
+		if (GameController.Instance.gameMode != GameMode.Stand_Alone)
+		{
+			this.pieceType = pieceType;
+		}
+		else
+		{
+			if (ChessBoardController.Instance.GetPlayer() == Player.One)
+			{
+				this.pieceType = 1;
+			}
+			else
+			{
+				this.pieceType = 2;
+			}
+		}
+	}
     public void Execute()
 	{
 		string s = FindChessBoardSpace();

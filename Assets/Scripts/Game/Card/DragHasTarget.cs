@@ -27,7 +27,6 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
                 selectMode = false;
                 //开始拖拽状态的预览
                 preView.DragPreview();
-                Debug.Log("正在拖拽卡牌");
             }
         }
     }

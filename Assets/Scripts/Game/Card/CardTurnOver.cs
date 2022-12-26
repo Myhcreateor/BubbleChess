@@ -40,12 +40,35 @@ public class CardTurnOver : MonoBehaviour
 	void Awake()
     {
         cardBack = transform.Find("CardBack").gameObject;
-        cardFront = transform.GetChild(1).gameObject;
+        cardFront = transform.Find("CardFront").gameObject;
         cardFront.GetComponent<Button>().onClick.AddListener(() =>
         {
-            Stand_AloneUIManager.Instance.CloseSelectCardPlane();
-            string s = cardFront.GetComponent<Image>().sprite.name;
-            CardManager.Instance.GenerateCardWithName(s);
+			if (GameController.Instance.gameMode != GameMode.Stand_Alone)
+			{
+                Stand_AloneUIManager.Instance.CloseSelectCardPlane();
+                string s = cardFront.GetComponent<Image>().sprite.name;
+                CardManager.Instance.GenerateCardWithName(s);
+			}
+			else
+			{
+				if (ChessBoardController.Instance.GetPlayer() == Player.One)
+				{
+                    string s = cardFront.GetComponent<Image>().sprite.name;
+                    CardManager.Instance.GenerateCardWithName(s);
+                    PlayerSelectCard playerSelectCard = transform.parent.GetComponent<PlayerSelectCard>();
+                    playerSelectCard.RefleshSelectCard();
+                    playerSelectCard.ChangeTitleText();
+                    ChessBoardController.Instance.HandOffPlayer();
+				}
+				else
+				{
+                    Stand_AloneUIManager.Instance.CloseSelectCardPlane();
+                    string s = cardFront.GetComponent<Image>().sprite.name;
+                    CardManager.Instance.GenerateCardWithName(s);
+                    ChessBoardController.Instance.HandOffPlayer();
+                }
+			}
+            
         });
         Init();
     }

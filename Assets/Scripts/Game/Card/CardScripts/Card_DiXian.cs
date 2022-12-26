@@ -11,8 +11,24 @@ public class Card_DiXian : Card
 	}
 	public override bool ExecuteCommand()
 	{
+		DiXianCommand diXianCommand;
 		ChessBoardController c = ChessBoardController.Instance;
-		DiXianCommand diXianCommand = new DiXianCommand(ref c.chessPieceArrays, 1, clickTrans);
+		if (GameController.Instance.gameMode != GameMode.Stand_Alone)
+		{
+			diXianCommand = new DiXianCommand(ref c.chessPieceArrays, 1, clickTrans);
+		}
+		else
+		{
+			if (ChessBoardController.Instance.GetPlayer() == Player.One)
+			{
+				diXianCommand = new DiXianCommand(ref c.chessPieceArrays, 1, clickTrans);
+			}
+			else
+			{
+				diXianCommand = new DiXianCommand(ref c.chessPieceArrays, 2, clickTrans);
+			}
+		    
+		}
 		diXianCommand.Execute();
 		return diXianCommand.isSuccessRelease;
 	}
