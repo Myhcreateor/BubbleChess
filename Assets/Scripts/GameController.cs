@@ -24,8 +24,13 @@ public class GameController : Singleton<GameController>
 		}else if (gameMode == GameMode.Stand_Alone)
 		{
 			//当前模式是双人本机对战模式
+		}else if(gameMode == GameMode.NetWorking)
+		{
+			//当前模式是联机对战模式
 		}
 	}
+	
+	
 	//在人机模式将人机角色串联起来
 	public void ChooseMan_MachinePlayer(int index)
 	{
