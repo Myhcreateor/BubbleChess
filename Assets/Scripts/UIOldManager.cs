@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class UIManager : Singleton<UIManager>
+public class UIOldManager : Singleton<UIOldManager>
 {
     public Button newStartButton;
     public Button exitGameButton;

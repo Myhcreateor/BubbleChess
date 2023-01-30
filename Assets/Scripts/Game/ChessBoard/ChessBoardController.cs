@@ -110,7 +110,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 			}
 			else 
 			{
-				UIManager.Instance.ShowGameOverPanel(firstScore, secondScore);
+				UIOldManager.Instance.ShowGameOverPanel(firstScore, secondScore);
 			}
 			return true;
 		}

@@ -1,0 +1,10 @@
+{
+"infoList":
+[
+{"panelTypeString":"Login",
+"path":"UIPanel/LoginPanel"},
+
+{"panelTypeString":"Register",
+"path":"UIPanel/RegisterPanel"}
+]
+}
