@@ -5,18 +5,17 @@ using UnityEngine.UI;
 
 public class RegisterPanel : BasePanel
 {
-	private Text registerUsername;
-	private Text registerPassword;
-	private Text registerRePassword;
+	private InputField registerUsername;
+	private InputField registerPassword;
+	private InputField registerRePassword;
 	private Text tipText;
 	private Button registerButton;
 	private Button closeButton;
-	public override void OnEnter()
+	public void Start()
 	{
-		base.OnEnter();
-		registerUsername = transform.Find("UserNameInputField/Text").GetComponent<Text>();
-		registerPassword = transform.Find("PasswordInputField/Text").GetComponent<Text>();
-		registerRePassword = transform.Find("RePasswordInputField/Text").GetComponent<Text>();
+		registerUsername = transform.Find("UserNameInputField").GetComponent<InputField>();
+		registerPassword = transform.Find("PasswordInputField").GetComponent<InputField>();
+		registerRePassword = transform.Find("RePasswordInputField").GetComponent<InputField>();
 		tipText = transform.Find("TipText").GetComponent<Text>();
 		registerButton = transform.Find("RegisterButton").GetComponent<Button>();
 		closeButton = transform.Find("CloseButton").GetComponent<Button>();
@@ -26,6 +25,11 @@ public class RegisterPanel : BasePanel
 			UIManager.Instance.PopPanel();
 		});
 	}
+	public override void OnEnter()
+	{
+		base.OnEnter();
+	}
+
 	public void RegisterUI()
 	{
 		if (registerPassword.text.Equals(registerRePassword.text))

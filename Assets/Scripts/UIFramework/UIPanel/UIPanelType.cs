@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
-
-public enum UIPanelType  {
-   Login,
-   Register
+public enum UIPanelType
+{
+	Main,
+	Login,
+	Register,
+	AboutUs
 }

@@ -3,29 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class UIManager
+public class UIManager:Singleton<UIManager>
 {
 
-	/// 
-	/// 单例模式的核心
-	/// 1，定义一个静态的对象 在外界访问 在内部构造
-	/// 2，构造方法私有化
-
-	private static UIManager _instance;
-
-	public static UIManager Instance
-	{
-		get
-		{
-			if (_instance == null)
-			{
-				_instance = new UIManager();
-			}
-			return _instance;
-		}
-	}
-
-
+    private void Awake()
+    {
+        base.Awake();
+        InitUIPanelPathDic();
+    }
+    public UIPanelModel uIPanelModel;
 	private Transform canvasTransform;
     private Transform CanvasTransform
     {
@@ -40,12 +26,8 @@ public class UIManager
     }
     private Dictionary<UIPanelType, string> panelPathDict;//存储所有面板Prefab的路径
     private Dictionary<UIPanelType, BasePanel> panelDict;//保存所有实例化面板的游戏物体身上的BasePanel组件
-    private Stack<BasePanel> panelStack;
+    public Stack<BasePanel> panelStack;
 
-    private UIManager()
-    {
-        ParseUIPanelTypeJson();
-    }
 
     /// <summary>
     /// 把某个页面入栈，  把某个页面显示在界面上
@@ -61,7 +43,6 @@ public class UIManager
             BasePanel topPanel = panelStack.Peek();
             topPanel.OnPause();
         }
-
         BasePanel panel = GetPanel(panelType);
         panel.OnEnter();
         panelStack.Push(panel);
@@ -75,11 +56,10 @@ public class UIManager
             panelStack = new Stack<BasePanel>();
 
         if (panelStack.Count <= 0) return;
-
+        
         //关闭栈顶页面的显示
         BasePanel topPanel = panelStack.Pop();
         topPanel.OnExit();
-
         if (panelStack.Count <= 0) return;
         BasePanel topPanel2 = panelStack.Peek();
         topPanel2.OnResume();
@@ -101,12 +81,10 @@ public class UIManager
         //panelDict.TryGetValue(panelType, out panel);//TODO
 
         BasePanel panel = panelDict.TryGet(panelType);
-
         if (panel == null)
         {
             //如果找不到，那么就找这个面板的prefab的路径，然后去根据prefab去实例化面板
-            //string path;
-            //panelPathDict.TryGetValue(panelType, out path);
+
             string path = panelPathDict.TryGet(panelType);
             GameObject instPanel = GameObject.Instantiate(Resources.Load(path)) as GameObject;
             instPanel.transform.SetParent(CanvasTransform,false);
@@ -117,27 +95,15 @@ public class UIManager
         {
             return panel;
         }
-
     }
-
-    [Serializable]
-    class UIPanelTypeJson
-    {
-        public List<UIPanelInfo> infoList;
-    }
-    private void ParseUIPanelTypeJson()
-    {
+    private void InitUIPanelPathDic()
+	{
         panelPathDict = new Dictionary<UIPanelType, string>();
-
-        TextAsset ta = Resources.Load<TextAsset>("UIPanelType");
-
-        UIPanelTypeJson jsonObject = JsonUtility.FromJson<UIPanelTypeJson>(ta.text);
-
-        foreach (UIPanelInfo info in jsonObject.infoList) 
-        {
-            panelPathDict.Add(info.panelType, info.path);
+        foreach(UIPanelInfo info in uIPanelModel.uiPanelInfoList)
+		{
+            string uiPanelpath = "UIPanel/" + info.path;
+            panelPathDict.Add(info.panelType, uiPanelpath);
         }
     }
-
 
 }

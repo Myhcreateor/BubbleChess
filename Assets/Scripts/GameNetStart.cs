@@ -9,6 +9,7 @@ public class GameNetStart : MonoBehaviour
     {
         NetManager.Instance.Connect("127.0.0.1", 10005);
         StartCoroutine(NetManager.Instance.CheckNet());
+        UIManager.Instance.PushPanel(UIPanelType.Main);
         UIManager.Instance.PushPanel(UIPanelType.Login);
     }
 

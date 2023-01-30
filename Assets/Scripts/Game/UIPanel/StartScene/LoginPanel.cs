@@ -5,18 +5,16 @@ using UnityEngine.UI;
 
 public class LoginPanel : BasePanel
 {
-	private Text loginUsername;
-	private Text loginPassword;
+	private InputField loginUsername;
+	private InputField loginPassword;
 	private Text tipText;
 	private Button closeButton;
 	private Button loginButton;
 	private Button registerButton;
-
-	public override void OnEnter()
+	void Start()
 	{
-		base.OnEnter();
-		loginUsername = transform.Find("UserNameInputField/Text").GetComponent<Text>();
-		loginPassword = transform.Find("PasswordInputField/Text").GetComponent<Text>();
+		loginUsername = transform.Find("UserNameInputField").GetComponent<InputField>();
+		loginPassword = transform.Find("PasswordInputField").GetComponent<InputField>();
 		tipText = transform.Find("TipText").GetComponent<Text>();
 		closeButton = transform.Find("CloseButton").GetComponent<Button>();
 		loginButton = transform.Find("LoginButton").GetComponent<Button>();
@@ -25,18 +23,26 @@ public class LoginPanel : BasePanel
 		loginButton.onClick.AddListener(LoginUI);
 		registerButton.onClick.AddListener(OpenRegisterUI);
 	}
+	public override void OnEnter()
+	{
+		base.OnEnter();
+	}
 
 	void ClosePanel()
 	{
 		UIManager.Instance.PopPanel();
 	}
+
 	void LoginUI()
 	{
+		
 		ProtocolManager.Login(LoginType.Phone, loginUsername.text, loginPassword.text, (res, restoken) =>
 		{
 			if (res == LoginResult.Success)
 			{
 				tipText.text = "登录成功!";
+				//TODO选择模式
+				UIManager.Instance.PopPanel();
 			}
 			else if (res == LoginResult.Failed)
 			{
