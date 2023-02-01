@@ -43,6 +43,7 @@ public class LoginPanel : BasePanel
 				tipText.text = "登录成功!";
 				//TODO选择模式
 				UIManager.Instance.PopPanel();
+				UIManager.Instance.PushPanel(UIPanelType.ChoiceModel);
 			}
 			else if (res == LoginResult.Failed)
 			{

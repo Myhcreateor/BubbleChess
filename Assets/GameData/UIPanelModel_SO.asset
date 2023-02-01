@@ -14,14 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiPanelInfoList:
   - panelType: 0
-    uiPanel: {fileID: 6787147092080820688, guid: ba12daf69f305044dbbb24fb22ad6b65, type: 3}
     path: MainPanel
   - panelType: 1
-    uiPanel: {fileID: 8632376803508375178, guid: 3bdbc5fd455052740a47acf14f7a2e79, type: 3}
     path: LoginPanel
   - panelType: 2
-    uiPanel: {fileID: 7741126008163625522, guid: 51993dd630b6a094381bc3c27cd1ea5d, type: 3}
     path: RegisterPanel
   - panelType: 3
-    uiPanel: {fileID: 8632376803508375178, guid: 5ec54be1bef78cc49bd9fca485528722, type: 3}
     path: AboutUsPanel
+  - panelType: 4
+    path: ChoiceModelPanel

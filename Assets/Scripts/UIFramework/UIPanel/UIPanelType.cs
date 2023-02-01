@@ -6,5 +6,6 @@ public enum UIPanelType
 	Main,
 	Login,
 	Register,
-	AboutUs
+	AboutUs,
+	ChoiceModel
 }
