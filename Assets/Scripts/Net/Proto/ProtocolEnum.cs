@@ -11,6 +11,7 @@ public enum ProtocolEnum
 	MsgSecret = 1,
 	MsgPing = 2,
 	MsgRegister = 3,
-	MsgLogin=4,
+	MsgLogin = 4,
+	MsgMatch = 5
 }
 

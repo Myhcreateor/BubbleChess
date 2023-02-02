@@ -179,6 +179,7 @@ public class ChessBoardUI : MonoBehaviour
 	private void OnGenerateParticleEffectEvent(string s, GameObject go)
 	{
 		Transform trans = chessBoardGridParent.Find(s);
+		
 		if (trans != null)
 		{
 			GameObject effectGo = Instantiate(go, trans.position, Quaternion.identity, trans);

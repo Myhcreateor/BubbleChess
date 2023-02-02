@@ -16,7 +16,7 @@ public class ProtocolManager
 		});
 	}
 	//注册协议的提交
-	public static void Register(RegisterType registerType ,string userName,string password ,string code, Action<RegisterResult> callback)
+	public static void Register(RegisterType registerType, string userName, string password, string code, Action<RegisterResult> callback)
 	{
 		MsgRegister msgRegister = new MsgRegister();
 		msgRegister.RegisterType = registerType;
@@ -31,7 +31,7 @@ public class ProtocolManager
 		});
 	}
 	//登录协议的提交
-	public static void Login(LoginType loginType,string userName,string password, Action<LoginResult,string> callback)
+	public static void Login(LoginType loginType, string userName, string password, Action<LoginResult, string> callback)
 	{
 		MsgLogin msgLogin = new MsgLogin();
 		msgLogin.LoginType = loginType;
@@ -42,6 +42,18 @@ public class ProtocolManager
 		{
 			MsgLogin msg = (MsgLogin)resmsg;
 			callback(msg.Result, msg.Token);
+		});
+	}
+	//匹配协议的提交
+	public static void Match(string userName, Action<MatchResult,string> callback)
+	{
+		MsgMatch msgMatch= new MsgMatch();
+		msgMatch.Account = userName;
+		NetManager.Instance.SendMessage(msgMatch); 
+		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgMatch, (resmsg) =>
+		{
+			MsgMatch msg = (MsgMatch)resmsg;
+			callback(msg.MatchResult,msg.OpponentName);
 		});
 	}
 }

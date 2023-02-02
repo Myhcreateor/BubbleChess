@@ -23,3 +23,5 @@ MonoBehaviour:
     path: AboutUsPanel
   - panelType: 4
     path: ChoiceModelPanel
+  - panelType: 5
+    path: MatchPanel

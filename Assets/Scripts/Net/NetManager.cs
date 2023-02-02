@@ -119,6 +119,7 @@ public class NetManager : Singleton<NetManager>
 		if (protoDic.ContainsKey(protocolEnum))
 		{
 			protoDic[protocolEnum](msgBase);
+			Debug.Log("处理了" + msgBase.ToString());
 		}
 	}
 	//链接服务器函数

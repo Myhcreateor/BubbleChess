@@ -13,6 +13,7 @@ public class ChoiceModelPanel : BasePanel
 	private Button confirmButton;
 	private Button closeButton;
 	private Text choiceModelText;
+
 	private void Start()
 	{
 		scrollRect = transform.Find("Scroll View").GetComponent<ScrollRect>();
@@ -26,8 +27,14 @@ public class ChoiceModelPanel : BasePanel
 		nextPageButton.onClick.AddListener(slideScrollView.ToNextPage);
 		confirmButton.onClick.AddListener(() =>
 		{
-			//TODO:
-			SceneManager.LoadScene(3);																
+			if(slideScrollView.currentIndex==2|| slideScrollView.currentIndex == 3)
+			{
+				SceneManager.LoadScene(slideScrollView.currentIndex);
+			}
+			else
+			{
+				UIManager.Instance.PushPanel(UIPanelType.Match);
+			}															
 		});
 		closeButton.onClick.AddListener(() => 
 		{

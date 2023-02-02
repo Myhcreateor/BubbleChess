@@ -29,4 +29,10 @@ public enum RegisterType
 {
 	Phone, Mail
 }
-
+public enum MatchResult
+{
+	Seeking,
+	TimeOut,
+	Failed,
+	Success
+}

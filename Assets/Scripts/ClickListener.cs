@@ -38,8 +38,10 @@ public class ClickListener : MonoBehaviour
 		else
 		{
 			// ∏ﬂ¡¡µ„÷–GameObject
+#if UNITY_EDITOR
 			EditorGUIUtility.PingObject(go);
 			Selection.activeObject = go;
+#endif
 		}
 
 	}
