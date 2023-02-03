@@ -45,15 +45,27 @@ public class ProtocolManager
 		});
 	}
 	//匹配协议的提交
-	public static void Match(string userName, Action<MatchResult,string> callback)
+	public static void Match(string userName,bool isMatch ,Action<MatchResult,string,int> callback)
 	{
 		MsgMatch msgMatch= new MsgMatch();
 		msgMatch.Account = userName;
+		msgMatch.IsMatch = isMatch;
 		NetManager.Instance.SendMessage(msgMatch); 
 		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgMatch, (resmsg) =>
 		{
 			MsgMatch msg = (MsgMatch)resmsg;
-			callback(msg.MatchResult,msg.OpponentName);
+			callback(msg.MatchResult,msg.OpponentName,msg.OpponentId);
+		});
+	}
+	//游戏开始协议
+	public static void StartBattle(Action<int> callback)
+	{
+		MsgStartBattle msgStartBattle = new MsgStartBattle();
+		NetManager.Instance.SendMessage(msgStartBattle);
+		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgStartBattle, (resmsg) =>
+		{
+			MsgStartBattle msg = (MsgStartBattle)resmsg;
+			callback(msg.order);
 		});
 	}
 }

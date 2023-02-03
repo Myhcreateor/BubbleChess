@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MatchPanel : BasePanel
@@ -16,10 +17,21 @@ public class MatchPanel : BasePanel
 		waitingTimeText = transform.Find("WaitingTimeText").GetComponent<Text>();
 		cancelButton.onClick.AddListener(() =>
 		{
-			isMatch = false;
 			UIManager.Instance.PopPanel();
 			//TODO向服务器发送取消匹配请求
 			CancelInvoke("MatchOpponent");
+			ProtocolManager.Match("111", false, (res, resText,resId) =>
+			{
+				if (res == MatchResult.Cancel)
+				{
+					isSuccessMatch = false;
+					isMatch = false;
+				}
+				else
+				{
+					Debug.LogError("未能成功取消匹配请求");
+				}
+			});
 		});
 	}
 	public override void OnEnter()
@@ -44,20 +56,24 @@ public class MatchPanel : BasePanel
 	{
 		if (isMatch&&!isSuccessMatch)
 		{
-			ProtocolManager.Match("111", (res, resText) =>
+			ProtocolManager.Match("111",true, (res, resText,resId) =>
 			{
 				if (res == MatchResult.Success)
 				{
 					waitingTimeText.text = "Your Opponent"+resText;
 					isSuccessMatch = true;
 					isMatch = false;
+					Invoke("LoadNetworkScene",2f);
 				}
 				else
 				{
-					Debug.Log(res);
+					//Debug.Log(res);
 				}
-				Debug.Log(resText);
 			});
 		}
+	}
+	void LoadNetworkScene()
+	{
+		SceneManager.LoadScene(1);
 	}
 }

@@ -43,13 +43,13 @@ public class CardTurnOver : MonoBehaviour
         cardFront = transform.Find("CardFront").gameObject;
         cardFront.GetComponent<Button>().onClick.AddListener(() =>
         {
-			if (GameController.Instance.gameMode != GameMode.Stand_Alone)
+			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
-                Stand_AloneUIManager.Instance.CloseSelectCardPlane();
                 string s = cardFront.GetComponent<Image>().sprite.name;
                 CardManager.Instance.GenerateCardWithName(s);
-			}
-			else
+                UIManager.Instance.PopPanel();
+            }
+			else if(GameController.Instance.gameMode == GameMode.Stand_Alone)
 			{
 				if (ChessBoardController.Instance.GetPlayer() == Player.One)
 				{
@@ -68,6 +68,12 @@ public class CardTurnOver : MonoBehaviour
                     ChessBoardController.Instance.HandOffPlayer();
                 }
 			}
+			else
+			{
+                Stand_AloneUIManager.Instance.CloseSelectCardPlane();
+                string s = cardFront.GetComponent<Image>().sprite.name;
+                CardManager.Instance.GenerateCardWithName(s);
+            }
             
         });
         Init();

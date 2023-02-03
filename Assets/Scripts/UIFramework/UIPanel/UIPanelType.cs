@@ -8,5 +8,7 @@ public enum UIPanelType
 	Register,
 	AboutUs,
 	ChoiceModel,
-	Match
+	Match,
+	SelectCard,
+	GameOver
 }

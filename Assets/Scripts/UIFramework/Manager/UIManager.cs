@@ -99,6 +99,10 @@ public class UIManager:Singleton<UIManager>
     private void InitUIPanelPathDic()
 	{
         panelPathDict = new Dictionary<UIPanelType, string>();
+		if (uIPanelModel == null)
+		{
+            Debug.LogError("没有找到UIPanelModel");
+		}
         foreach(UIPanelInfo info in uIPanelModel.uiPanelInfoList)
 		{
             string uiPanelpath = "UIPanel/" + info.path;

@@ -13,7 +13,6 @@ public class PlayerSelectCard : MonoBehaviour
 	private void Awake()
 	{
         RefleshSelectCard();
-
     }
     public void RefleshSelectCard()
 	{

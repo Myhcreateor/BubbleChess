@@ -110,7 +110,10 @@ public class ChessBoardUI : MonoBehaviour
 				//chessBoardController.chessPieceArrays[col][row]
 			}
 		}
-
+		if (GameController.Instance.gameMode == GameMode.NetWorking)
+		{
+			//将数据发送给服务器,包括chessBoardController.chessPieceArrays,Userid,棋子类型
+		}
 	}
 
 	private void OnNewStartGameEvent()
@@ -167,6 +170,20 @@ public class ChessBoardUI : MonoBehaviour
 			EventHandler.CallUpdateChessBoardEvent();
 			chessBoardController.twoSideRoundNum++;
 			chessBoardController.isRoundOver(chessBoardController.twoSideRoundNum);
+		}
+		else if (GameController.Instance.gameMode == GameMode.NetWorking)
+		{
+			int num;
+			if (GameController.Instance.player == Player.One)
+			{
+				num = 1;
+			}
+			else
+			{
+				num = 2;
+			}
+			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), num);
+			EventHandler.CallUpdateChessBoardEvent();
 		}
 
 	}

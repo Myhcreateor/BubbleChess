@@ -34,5 +34,6 @@ public enum MatchResult
 	Seeking,
 	TimeOut,
 	Failed,
-	Success
+	Success,
+	Cancel
 }

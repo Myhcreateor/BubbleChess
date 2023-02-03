@@ -12,11 +12,13 @@ public class MsgMatch : MsgBase
 	public override ProtocolEnum ProtoType { get; set; }
 	[ProtoMember(2)]
 	public string Account;
-	//服务器向客户端返回的数据
 	[ProtoMember(3)]
-	public MatchResult MatchResult;
+	public bool IsMatch;
+	//服务器向客户端返回的数据
 	[ProtoMember(4)]
-	public string OpponentName;
+	public MatchResult MatchResult;
 	[ProtoMember(5)]
+	public string OpponentName;
+	[ProtoMember(6)]
 	public int OpponentId;
 }

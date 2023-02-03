@@ -44,7 +44,7 @@ public class NetManager : Singleton<NetManager>
 	private Queue<ByteArray> writeQueue;
 
 	private NetworkReachability currentNetwork = NetworkReachability.NotReachable;
-	private void Awake()
+	protected override void Awake()
 	{
 		base.Awake();
 	}
@@ -119,7 +119,7 @@ public class NetManager : Singleton<NetManager>
 		if (protoDic.ContainsKey(protocolEnum))
 		{
 			protoDic[protocolEnum](msgBase);
-			Debug.Log("处理了" + msgBase.ToString());
+			//Debug.Log("处理了" + msgBase.ToString());
 		}
 	}
 	//链接服务器函数

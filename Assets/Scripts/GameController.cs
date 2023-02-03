@@ -10,6 +10,8 @@ public class GameController : Singleton<GameController>
 	public GameState gameState;
 	private Man_MachinePlayer man_MachinePlayer;
 	[HideInInspector]
+	public Player player;
+	[HideInInspector]
 	public int currentCharacterIndex;
 	public Man_MachineCharacterModel characterModel;
 	private void Awake()
@@ -29,8 +31,27 @@ public class GameController : Singleton<GameController>
 			//当前模式是联机对战模式
 		}
 	}
-	
-	
+	private void Start()
+	{
+		if (gameMode == GameMode.NetWorking)
+		{
+			//当前模式是联机对战模式
+			ProtocolManager.StartBattle((res) =>
+			{
+				if (res == 1)
+				{
+					player = Player.One;
+				}
+				else
+				{
+					player = Player.Two;
+				}
+			});
+			UIManager.Instance.PushPanel(UIPanelType.SelectCard);
+
+		}
+	}
+
 	//在人机模式将人机角色串联起来
 	public void ChooseMan_MachinePlayer(int index)
 	{
