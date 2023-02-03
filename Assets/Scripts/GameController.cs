@@ -51,7 +51,32 @@ public class GameController : Singleton<GameController>
 
 		}
 	}
-
+	public int GetPlayer()
+	{
+		int num;
+		if (GameController.Instance.player == Player.One)
+		{
+			num = 1;
+		}
+		else
+		{
+			num = 2;
+		}
+		return num;
+	}
+	public int GetOpponent()
+	{
+		int num;
+		if (player == Player.One)
+		{
+			num = 2;
+		}
+		else
+		{
+			num = 1;
+		}
+		return num;
+	}
 	//在人机模式将人机角色串联起来
 	public void ChooseMan_MachinePlayer(int index)
 	{

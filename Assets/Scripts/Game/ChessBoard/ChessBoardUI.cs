@@ -40,7 +40,7 @@ public class ChessBoardUI : MonoBehaviour
 		EventHandler.UpdateChessBoardEvent -= OnUpdateChessBoardEvent;
 		EventHandler.GenerateParticleEffectEvent -= OnGenerateParticleEffectEvent;
 	}
-	private GameObject FindPiecesListWithName(int col,int row)
+	private GameObject FindPiecesListWithName(int col, int row)
 	{
 		return allPiecesList.Find(i => i.name == col.ToString() + "," + row.ToString());
 	}
@@ -55,7 +55,7 @@ public class ChessBoardUI : MonoBehaviour
 			{
 				if (chessBoardController.chessPieceArrays[col][row] == 0)
 				{
-					piece = FindPiecesListWithName(col,row);
+					piece = FindPiecesListWithName(col, row);
 					if (piece)
 					{
 						allPiecesList.Remove(piece);
@@ -110,10 +110,6 @@ public class ChessBoardUI : MonoBehaviour
 				//chessBoardController.chessPieceArrays[col][row]
 			}
 		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking)
-		{
-			//将数据发送给服务器,包括chessBoardController.chessPieceArrays,Userid,棋子类型
-		}
 	}
 
 	private void OnNewStartGameEvent()
@@ -160,10 +156,11 @@ public class ChessBoardUI : MonoBehaviour
 				//Todo:需要完成卡牌的消费
 				Man_MachineCardManager.Instance.isAddCardToHand = true;
 			}
-			GameController.Instance. Man_MachinePlayerPlayChess(ref chessBoardController.chessPieceArrays, 2);
+			GameController.Instance.Man_MachinePlayerPlayChess(ref chessBoardController.chessPieceArrays, 2);
 			EventHandler.CallUpdateChessBoardEvent();
 			chessBoardController.isRoundOver(chessBoardController.twoSideRoundNum);
-		}else if(GameController.Instance.gameMode == GameMode.Stand_Alone)
+		}
+		else if (GameController.Instance.gameMode == GameMode.Stand_Alone)
 		{
 			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (chessBoardController.twoSideRoundNum % 2) + 1);
 			chessBoardController.HandOffPlayer();
@@ -173,17 +170,18 @@ public class ChessBoardUI : MonoBehaviour
 		}
 		else if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{
-			int num;
-			if (GameController.Instance.player == Player.One)
-			{
-				num = 1;
-			}
-			else
-			{
-				num = 2;
-			}
-			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), num);
+			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), GameController.Instance.GetPlayer());
 			EventHandler.CallUpdateChessBoardEvent();
+			//将数据发送给服务器,包括chessBoardController.chessPieceArrays,Userid,棋子类型
+			ProtocolManager.UpdateChessBroad(go.name, (s, res) =>
+			{
+				if (res == UpdateResult.Failed)
+				{
+					Debug.LogError("棋盘状态同步失败");
+				}
+				chessBoardController.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
+				EventHandler.CallUpdateChessBoardEvent();
+			});
 		}
 
 	}
@@ -196,7 +194,7 @@ public class ChessBoardUI : MonoBehaviour
 	private void OnGenerateParticleEffectEvent(string s, GameObject go)
 	{
 		Transform trans = chessBoardGridParent.Find(s);
-		
+
 		if (trans != null)
 		{
 			GameObject effectGo = Instantiate(go, trans.position, Quaternion.identity, trans);

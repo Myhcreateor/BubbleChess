@@ -121,6 +121,20 @@ public class NetManager : Singleton<NetManager>
 			protoDic[protocolEnum](msgBase);
 			//Debug.Log("处理了" + msgBase.ToString());
 		}
+		else
+		{
+			if(msgBase is MsgUpdateChessBoard)
+			{
+				AddProtoListener(ProtocolEnum.MsgUpdateChessBoard, (resmsg) =>
+				{
+					MsgUpdateChessBoard msgUpdateChessBroad = (MsgUpdateChessBoard)resmsg;
+					string s = msgUpdateChessBroad.trans;
+					ChessBoardController.Instance.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
+					EventHandler.CallUpdateChessBoardEvent();
+				});
+				protoDic[protocolEnum](msgBase);
+			}
+		}
 	}
 	//链接服务器函数
 	public void Connect(string ip, int port)

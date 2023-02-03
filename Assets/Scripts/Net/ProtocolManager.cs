@@ -68,4 +68,16 @@ public class ProtocolManager
 			callback(msg.order);
 		});
 	}
+	//更新棋盘协议
+	public static void UpdateChessBroad(string s,Action<string,UpdateResult> callback)
+	{
+		MsgUpdateChessBoard msgUpdateChessBroad = new MsgUpdateChessBoard();
+		msgUpdateChessBroad.trans = s;
+		NetManager.Instance.SendMessage(msgUpdateChessBroad);
+		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgUpdateChessBoard, (resmsg) =>
+		{
+			MsgUpdateChessBoard msg = (MsgUpdateChessBoard)resmsg;
+			callback(msg.trans,msg.UpdateResult);
+		});
+	}
 }

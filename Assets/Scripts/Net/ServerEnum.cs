@@ -37,3 +37,13 @@ public enum MatchResult
 	Success,
 	Cancel
 }
+public enum UpdateResult
+{
+	Success,
+	Failed
+}
+public enum Player
+{
+	One, Two
+}
+

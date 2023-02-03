@@ -313,7 +313,3 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	}
 
 }
-public enum Player
-{
-	One ,Two
-}

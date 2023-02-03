@@ -13,6 +13,7 @@ public enum ProtocolEnum
 	MsgRegister = 3,
 	MsgLogin = 4,
 	MsgMatch = 5,
-	MsgStartBattle,
+	MsgStartBattle=6,
+	MsgUpdateChessBoard = 7,
 }
 
