@@ -65,6 +65,7 @@ public class ProtocolManager
 		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgStartBattle, (resmsg) =>
 		{
 			MsgStartBattle msg = (MsgStartBattle)resmsg;
+			Debug.Log(msg.order);
 			callback(msg.order);
 		});
 	}

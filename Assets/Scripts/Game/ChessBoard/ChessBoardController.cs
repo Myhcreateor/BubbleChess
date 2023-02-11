@@ -12,7 +12,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public List<GameObject> piecesList;
 	public GameMode gameMode;
 	public int twoSideRoundNum = 0;
-	private Player player;
+	public Player player;
+	public bool IsPlayeChess;
 	//计算分数的数组
 	public int[][] chessPieceArrays = new int[8][];
 	private int[][] transposeArrays = new int[8][];

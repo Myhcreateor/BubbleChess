@@ -24,6 +24,11 @@ public class EventHandler : MonoBehaviour
 	{
 		UpdateDebugEvent?.Invoke(index);
 	}
+	public static event Action<string> UpdateDebugStringEvent;
+	public static void CallUpdateDebugStringEvent(string s)
+	{
+		UpdateDebugStringEvent?.Invoke(s);
+	}
 	public static event Action NewStartGameEvent;
 	public static void CallNewStartGameEvent()
 	{

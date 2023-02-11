@@ -131,6 +131,7 @@ public class NetManager : Singleton<NetManager>
 					string s = msgUpdateChessBroad.trans;
 					ChessBoardController.Instance.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
 					EventHandler.CallUpdateChessBoardEvent();
+					ChessBoardController.Instance.IsPlayeChess = true;
 				});
 				protoDic[protocolEnum](msgBase);
 			}

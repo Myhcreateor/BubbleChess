@@ -29,24 +29,29 @@ public class GameController : Singleton<GameController>
 		}else if(gameMode == GameMode.NetWorking)
 		{
 			//当前模式是联机对战模式
+			ProtocolManager.StartBattle((res) =>
+			{
+				if (res == 1)
+				{
+					ChessBoardController.Instance.player = Player.One;
+					player = Player.One;
+					ChessBoardController.Instance.IsPlayeChess = true;
+					EventHandler.CallUpdateDebugStringEvent("你的回合开始");
+				}
+				else
+				{
+					ChessBoardController.Instance.player = Player.Two;
+					player = Player.Two;
+					ChessBoardController.Instance.IsPlayeChess = false;
+					EventHandler.CallUpdateDebugStringEvent("等待对方下棋");
+				}
+			});
 		}
 	}
 	private void Start()
 	{
 		if (gameMode == GameMode.NetWorking)
 		{
-			//当前模式是联机对战模式
-			ProtocolManager.StartBattle((res) =>
-			{
-				if (res == 1)
-				{
-					player = Player.One;
-				}
-				else
-				{
-					player = Player.Two;
-				}
-			});
 			UIManager.Instance.PushPanel(UIPanelType.SelectCard);
 
 		}

@@ -10,7 +10,7 @@ public class ChessBoardUI : MonoBehaviour
 	private Transform chessBoardGridParent;
 	public List<GameObject> allPiecesList;
 	private ChessBoardController chessBoardController;
-	// Start is called before the first frame update
+	
 	void Awake()
 	{
 		chessBoardController = ChessBoardController.Instance;
@@ -18,12 +18,14 @@ public class ChessBoardUI : MonoBehaviour
 		ChessBoardPieces = transform.Find("ChessBoardPieces");
 		chessBoardGridParent = transform.Find("ChessBoardGridPraret");
 	}
+
 	private void OnEnable()
 	{
 		EventHandler.ShowScoreEvent += OnShowScoreEvent;
 		EventHandler.GenerateChessEvent += OnGenerateChessEvent;
 		EventHandler.GameOverEvent += OnGameOverEvent;
 		EventHandler.UpdateDebugEvent += OnUpdateDebugEvent;
+		EventHandler.UpdateDebugStringEvent += OnUpdateDebugStringEvent;
 		EventHandler.NewStartGameEvent += OnNewStartGameEvent;
 		EventHandler.UpdateChessBoardEvent += OnUpdateChessBoardEvent;
 		EventHandler.GenerateParticleEffectEvent += OnGenerateParticleEffectEvent;
@@ -37,9 +39,16 @@ public class ChessBoardUI : MonoBehaviour
 		EventHandler.GameOverEvent -= OnGameOverEvent;
 		EventHandler.UpdateDebugEvent -= OnUpdateDebugEvent;
 		EventHandler.NewStartGameEvent -= OnNewStartGameEvent;
+		EventHandler.UpdateDebugStringEvent -= OnUpdateDebugStringEvent;
 		EventHandler.UpdateChessBoardEvent -= OnUpdateChessBoardEvent;
 		EventHandler.GenerateParticleEffectEvent -= OnGenerateParticleEffectEvent;
 	}
+
+	private void OnUpdateDebugStringEvent(string s)
+	{
+		debugText.text = s;
+	}
+
 	private GameObject FindPiecesListWithName(int col, int row)
 	{
 		return allPiecesList.Find(i => i.name == col.ToString() + "," + row.ToString());
@@ -106,8 +115,6 @@ public class ChessBoardUI : MonoBehaviour
 					}
 
 				}
-				//Instantiate(chessBoardController.piecesList[pieceType % 2], go.transform.position, Quaternion.identity, ChessBoardPieces);
-				//chessBoardController.chessPieceArrays[col][row]
 			}
 		}
 	}
@@ -170,18 +177,25 @@ public class ChessBoardUI : MonoBehaviour
 		}
 		else if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{
-			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), GameController.Instance.GetPlayer());
-			EventHandler.CallUpdateChessBoardEvent();
-			//将数据发送给服务器,包括chessBoardController.chessPieceArrays,Userid,棋子类型
-			ProtocolManager.UpdateChessBroad(go.name, (s, res) =>
+			if (chessBoardController.IsPlayeChess)
 			{
-				if (res == UpdateResult.Failed)
-				{
-					Debug.LogError("棋盘状态同步失败");
-				}
-				chessBoardController.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
+				chessBoardController.IsPlayeChess = false;
+				debugText.text = "等待对方下棋";
+				chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), GameController.Instance.GetPlayer());
 				EventHandler.CallUpdateChessBoardEvent();
-			});
+				//将数据发送给服务器,包括chessBoardController.chessPieceArrays,Userid,棋子类型
+				ProtocolManager.UpdateChessBroad(go.name, (s, res) =>
+				{
+					if (res == UpdateResult.Failed)
+					{
+						Debug.LogError("棋盘状态同步失败");
+					}
+					chessBoardController.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
+					EventHandler.CallUpdateChessBoardEvent();
+					chessBoardController.IsPlayeChess = true;
+					debugText.text = "你的回合开始";
+				});
+			}
 		}
 
 	}
@@ -189,7 +203,7 @@ public class ChessBoardUI : MonoBehaviour
 	{
 		debugText.text = chessBoardController.piecesList[0].name + index1 + "    " + chessBoardController.piecesList[1].name + index2;
 	}
-
+	
 
 	private void OnGenerateParticleEffectEvent(string s, GameObject go)
 	{
