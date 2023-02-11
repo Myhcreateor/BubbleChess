@@ -15,5 +15,6 @@ public enum ProtocolEnum
 	MsgMatch = 5,
 	MsgStartBattle=6,
 	MsgUpdateChessBoard = 7,
+	MsgCardTrigger=8,
 }
 

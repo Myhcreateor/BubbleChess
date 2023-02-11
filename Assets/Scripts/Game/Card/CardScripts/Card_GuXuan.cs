@@ -15,13 +15,13 @@ public class Card_GuXuan : Card
 	public override bool ExecuteCommand()
 	{
 		ChessBoardController c = ChessBoardController.Instance;
-		GuXuanCommand guXuanCommand = new GuXuanCommand(ref c.chessPieceArrays, 1);
+		GuXuanCommand guXuanCommand = new GuXuanCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
 		guXuanCommand.Execute();
 		for (int i = 0; i < guXuanCommand.str.Length; i++)
 		{
 			if (c.chessPieceArrays[int.Parse(guXuanCommand.str[i].Split(',')[0])][int.Parse(guXuanCommand.str[i].Split(',')[1])] == 0)
 			{
-				GameObject go = Instantiate(c.piecesList[0], c.GetChessBoardGridTransform().Find(guXuanCommand.str[i]).transform.position, Quaternion.identity, c.GetChessBoardPiecesTransform());
+				GameObject go = Instantiate(c.piecesList[GameController.Instance.GetPlayer()-1], c.GetChessBoardGridTransform().Find(guXuanCommand.str[i]).transform.position, Quaternion.identity, c.GetChessBoardPiecesTransform());
 				go.GetComponent<Image>().DOFade(0, 2f);
 				Destroy(go, 2f);
 			}
@@ -37,6 +37,14 @@ public class Card_GuXuan : Card
 			//	Destroy(go, 2f);
 			//}
 		}
+		ProtocolManager.CardTrigger(CardName.GuXuan, (chessPieceLinearArray, res) =>
+		{
+			for (int i = 0; i < chessPieceLinearArray.Length; i++)
+			{
+				c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+			}
+			EventHandler.CallUpdateChessBoardEvent();
+		});
 		return true;
 	}
 

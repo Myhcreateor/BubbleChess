@@ -31,3 +31,21 @@ public class MsgUpdateChessBoard : MsgBase
 	[ProtoMember(3)]
 	public UpdateResult UpdateResult;
 }
+[ProtoContract]
+public class MsgCardTrigger : MsgBase
+{
+	public MsgCardTrigger()
+	{
+		ProtoType = ProtocolEnum.MsgCardTrigger;
+	}
+	//客户端向服务器发送的数据
+	[ProtoMember(1)]
+	public override ProtocolEnum ProtoType { get; set; }
+	[ProtoMember(2)]
+	public CardName CardName;
+	[ProtoMember(3)]
+	public int[] ChessPieceLinearArray;
+	//服务器向客户端发送的数据
+	[ProtoMember(4)]
+	public UpdateResult UpdateResult;
+}

@@ -65,7 +65,6 @@ public class ProtocolManager
 		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgStartBattle, (resmsg) =>
 		{
 			MsgStartBattle msg = (MsgStartBattle)resmsg;
-			Debug.Log(msg.order);
 			callback(msg.order);
 		});
 	}
@@ -79,6 +78,26 @@ public class ProtocolManager
 		{
 			MsgUpdateChessBoard msg = (MsgUpdateChessBoard)resmsg;
 			callback(msg.trans,msg.UpdateResult);
+		});
+	}
+	//ø®≈∆¥•∑¢–≠“È
+	public static void CardTrigger(CardName cardName, Action<int[],UpdateResult> callback)
+	{
+		MsgCardTrigger msgCardTrigger = new MsgCardTrigger();
+		msgCardTrigger.CardName = cardName;
+		msgCardTrigger.ChessPieceLinearArray = new int[64];
+		for (int col = 0; col < 8; col++)
+		{
+			for (int row = 0; row < 8; row++)
+			{
+				msgCardTrigger.ChessPieceLinearArray[col * 8 + row] = ChessBoardController.Instance.chessPieceArrays[col][row];
+			}
+		}
+		NetManager.Instance.SendMessage(msgCardTrigger);
+		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgCardTrigger, (resmsg) =>
+		{
+			MsgCardTrigger msg = (MsgCardTrigger)resmsg;
+			callback(msg.ChessPieceLinearArray,msg.UpdateResult);
 		});
 	}
 }

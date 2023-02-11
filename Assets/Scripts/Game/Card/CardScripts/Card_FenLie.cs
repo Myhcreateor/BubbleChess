@@ -12,13 +12,21 @@ public class Card_FenLie : Card
 	public override bool ExecuteCommand()
 	{
 		ChessBoardController c = ChessBoardController.Instance;
-		FenLieCommand fenLieCommand = new FenLieCommand(ref c.chessPieceArrays, 1, clickTrans);
+		FenLieCommand fenLieCommand = new FenLieCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
 		fenLieCommand.Execute();
 		if (fenLieCommand.isSuccessRelease)
 		{
 			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+			ProtocolManager.CardTrigger(CardName.FenLie, (chessPieceLinearArray, res) =>
+			{
+				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				{
+					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+				}
+				EventHandler.CallUpdateChessBoardEvent();
+			});
+			EventHandler.CallUpdateChessBoardEvent();
 		}
-		EventHandler.CallUpdateChessBoardEvent();
 		return fenLieCommand.isSuccessRelease;
 	}
 	public override void SetClickTrans(string s)

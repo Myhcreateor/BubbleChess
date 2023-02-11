@@ -12,15 +12,15 @@ public class CardManager : Singleton<CardManager>
 	{
 		base.Awake();
 	}
+
 	protected virtual void Update()
 	{
-		if (GameController.Instance.gameMode == GameMode.Stand_Alone)
+		if (GameController.Instance.gameMode == GameMode.Stand_Alone|| GameController.Instance.gameMode == GameMode.NetWorking)
 		{
 			if (Input.GetKeyDown(KeyCode.Q))
 			{
 				isAddCardToHand = true; 
 			}
-			
 		}
 		if (isAddCardToHand)
 		{

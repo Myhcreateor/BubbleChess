@@ -132,6 +132,20 @@ public class NetManager : Singleton<NetManager>
 					ChessBoardController.Instance.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
 					EventHandler.CallUpdateChessBoardEvent();
 					ChessBoardController.Instance.IsPlayeChess = true;
+
+				});
+				protoDic[protocolEnum](msgBase);
+			}
+			if (msgBase is MsgCardTrigger)
+			{
+				AddProtoListener(ProtocolEnum.MsgCardTrigger, (resmsg) =>
+				{
+					MsgCardTrigger msgCardTrigger = (MsgCardTrigger)resmsg;
+					for (int i = 0; i < msgCardTrigger. ChessPieceLinearArray.Length; i++)
+					{
+						ChessBoardController.Instance.chessPieceArrays[i / 8][i % 8] = msgCardTrigger.ChessPieceLinearArray[i];
+					}
+					EventHandler.CallUpdateChessBoardEvent();
 				});
 				protoDic[protocolEnum](msgBase);
 			}

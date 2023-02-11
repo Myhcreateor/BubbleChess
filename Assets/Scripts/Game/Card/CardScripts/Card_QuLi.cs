@@ -12,13 +12,21 @@ public class Card_QuLi : Card
 	public override bool ExecuteCommand()
 	{
 		ChessBoardController c = ChessBoardController.Instance;
-		QuLiCommand QuLiCommand = new QuLiCommand(ref c.chessPieceArrays, 1, clickTrans);
+		QuLiCommand QuLiCommand = new QuLiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
 		QuLiCommand.Execute();
 		if (QuLiCommand.isSuccessRelease)
 		{
 			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
+			ProtocolManager.CardTrigger(CardName.QuLi, (chessPieceLinearArray, res) =>
+			{
+				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				{
+					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+				}
+				EventHandler.CallUpdateChessBoardEvent();
+			});
+			EventHandler.CallUpdateChessBoardEvent();
 		}
-		EventHandler.CallUpdateChessBoardEvent();
 		return QuLiCommand.isSuccessRelease;
 	}
 	public override void SetClickTrans(string s)

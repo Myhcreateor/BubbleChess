@@ -15,8 +15,16 @@ public class Card_YanXi : Card
 	public override bool ExecuteCommand()
 	{
 		ChessBoardController c = ChessBoardController.Instance;
-		YanXiCommand yanXiCommand = new YanXiCommand(ref c.chessPieceArrays, 1);
+		YanXiCommand yanXiCommand = new YanXiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
 		yanXiCommand.Execute();
+		ProtocolManager.CardTrigger(CardName.YanXi, (chessPieceLinearArray, res) =>
+		{
+			for (int i = 0; i < chessPieceLinearArray.Length; i++)
+			{
+				c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+			}
+			EventHandler.CallUpdateChessBoardEvent();
+		});
 		EventHandler.CallUpdateChessBoardEvent();
 		return true;
 	}
