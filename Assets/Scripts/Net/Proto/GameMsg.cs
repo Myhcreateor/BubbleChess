@@ -42,10 +42,12 @@ public class MsgCardTrigger : MsgBase
 	[ProtoMember(1)]
 	public override ProtocolEnum ProtoType { get; set; }
 	[ProtoMember(2)]
-	public CardName CardName;
+	public string ParticleEffectPath;
 	[ProtoMember(3)]
+	public string trans;
+	[ProtoMember(4)]
 	public int[] ChessPieceLinearArray;
 	//服务器向客户端发送的数据
-	[ProtoMember(4)]
+	[ProtoMember(5)]
 	public UpdateResult UpdateResult;
 }

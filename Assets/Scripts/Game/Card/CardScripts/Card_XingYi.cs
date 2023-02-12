@@ -16,15 +16,19 @@ public class Card_XingYi : Card
 		xingYiCommand.Execute();
 		if (xingYiCommand.isSuccessRelease)
 		{
-			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
-			ProtocolManager.CardTrigger(CardName.XingYi, (chessPieceLinearArray, res) =>
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffectPath);
+			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
-				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>
 				{
-					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
-				}
-				EventHandler.CallUpdateChessBoardEvent();
-			});
+					for (int i = 0; i < chessPieceLinearArray.Length; i++)
+					{
+						c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+					}
+					EventHandler.CallUpdateChessBoardEvent();
+					EventHandler.CallGenerateParticleEffectEvent(trans, path);
+				});
+			}
 			EventHandler.CallUpdateChessBoardEvent();
 		}
 		

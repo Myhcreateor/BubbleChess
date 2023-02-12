@@ -81,10 +81,11 @@ public class ProtocolManager
 		});
 	}
 	//ø®≈∆¥•∑¢–≠“È
-	public static void CardTrigger(CardName cardName, Action<int[],UpdateResult> callback)
+	public static void CardTrigger(string particleEffectPath,string trans, Action<string,string,int[],UpdateResult> callback)
 	{
 		MsgCardTrigger msgCardTrigger = new MsgCardTrigger();
-		msgCardTrigger.CardName = cardName;
+		msgCardTrigger.ParticleEffectPath = particleEffectPath;
+		msgCardTrigger.trans = trans;
 		msgCardTrigger.ChessPieceLinearArray = new int[64];
 		for (int col = 0; col < 8; col++)
 		{
@@ -97,7 +98,7 @@ public class ProtocolManager
 		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgCardTrigger, (resmsg) =>
 		{
 			MsgCardTrigger msg = (MsgCardTrigger)resmsg;
-			callback(msg.ChessPieceLinearArray,msg.UpdateResult);
+			callback(msg.ParticleEffectPath,msg.trans,msg.ChessPieceLinearArray,msg.UpdateResult);
 		});
 	}
 }

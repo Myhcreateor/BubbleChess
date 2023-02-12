@@ -205,12 +205,13 @@ public class ChessBoardUI : MonoBehaviour
 	}
 	
 
-	private void OnGenerateParticleEffectEvent(string s, GameObject go)
+	private void OnGenerateParticleEffectEvent(string s, string path)
 	{
 		Transform trans = chessBoardGridParent.Find(s);
 
 		if (trans != null)
 		{
+			GameObject go = Resources.Load<GameObject>(path);
 			GameObject effectGo = Instantiate(go, trans.position, Quaternion.identity, trans);
 			Destroy(effectGo, 2f);
 		}

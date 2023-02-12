@@ -145,6 +145,7 @@ public class NetManager : Singleton<NetManager>
 					{
 						ChessBoardController.Instance.chessPieceArrays[i / 8][i % 8] = msgCardTrigger.ChessPieceLinearArray[i];
 					}
+					EventHandler.CallGenerateParticleEffectEvent(msgCardTrigger.trans, msgCardTrigger.ParticleEffectPath);
 					EventHandler.CallUpdateChessBoardEvent();
 				});
 				protoDic[protocolEnum](msgBase);

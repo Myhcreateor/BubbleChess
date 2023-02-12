@@ -17,14 +17,18 @@ public class Card_YanXi : Card
 		ChessBoardController c = ChessBoardController.Instance;
 		YanXiCommand yanXiCommand = new YanXiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
 		yanXiCommand.Execute();
-		ProtocolManager.CardTrigger(CardName.YanXi, (chessPieceLinearArray, res) =>
+		string clickTrans = "";
+		if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{
-			for (int i = 0; i < chessPieceLinearArray.Length; i++)
+			ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>
 			{
-				c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
-			}
-			EventHandler.CallUpdateChessBoardEvent();
-		});
+				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				{
+					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+				}
+				EventHandler.CallUpdateChessBoardEvent();
+			});
+		}
 		EventHandler.CallUpdateChessBoardEvent();
 		return true;
 	}

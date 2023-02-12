@@ -27,17 +27,20 @@ public class Card_DiXian : Card
 			{
 				diXianCommand = new DiXianCommand(ref c.chessPieceArrays, 2, clickTrans);
 			}
-		    
+
 		}
 		diXianCommand.Execute();
-		ProtocolManager.CardTrigger(CardName.DiXian, (chessPieceLinearArray, res) =>
+		if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{
-			for (int i = 0; i < chessPieceLinearArray.Length; i++)
+			ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>
 			{
-				c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
-			}
-			EventHandler.CallUpdateChessBoardEvent();
-		});
+				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				{
+					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+				}
+				EventHandler.CallUpdateChessBoardEvent();
+			});
+		}
 		return diXianCommand.isSuccessRelease;
 	}
 	public override void SetClickTrans(string s)

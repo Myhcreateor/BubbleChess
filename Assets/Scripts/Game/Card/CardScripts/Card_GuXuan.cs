@@ -37,14 +37,18 @@ public class Card_GuXuan : Card
 			//	Destroy(go, 2f);
 			//}
 		}
-		ProtocolManager.CardTrigger(CardName.GuXuan, (chessPieceLinearArray, res) =>
+		string clickTrans = "";
+		if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{
-			for (int i = 0; i < chessPieceLinearArray.Length; i++)
+			ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>
 			{
-				c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
-			}
-			EventHandler.CallUpdateChessBoardEvent();
-		});
+				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				{
+					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+				}
+				EventHandler.CallUpdateChessBoardEvent();
+			});
+		}
 		return true;
 	}
 

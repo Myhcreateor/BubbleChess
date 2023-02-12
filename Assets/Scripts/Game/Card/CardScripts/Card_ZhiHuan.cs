@@ -16,16 +16,20 @@ public class Card_ZhiHuan : Card
 		zhiHuanCommand.Execute();
 		if (zhiHuanCommand.isSuccessRelease)
 		{
-			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffect);
-			ProtocolManager.CardTrigger(CardName.ZhiHuan, (chessPieceLinearArray, res) =>
+			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffectPath);
+			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
-				for (int i = 0; i < chessPieceLinearArray.Length; i++)
+				ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>
 				{
-					//ChessBoardController.Instance.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
-					c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
-				}
-				Invoke("CallUpdateChessBoardEvent", 0.5f);
-			});
+					for (int i = 0; i < chessPieceLinearArray.Length; i++)
+					{
+						//ChessBoardController.Instance.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+						c.chessPieceArrays[i / 8][i % 8] = chessPieceLinearArray[i];
+					}
+					Invoke("CallUpdateChessBoardEvent", 0.5f);
+					EventHandler.CallGenerateParticleEffectEvent(trans, path);
+				});
+			}
 			Invoke("CallUpdateChessBoardEvent", 0.5f);
 		}
 		return zhiHuanCommand.isSuccessRelease;

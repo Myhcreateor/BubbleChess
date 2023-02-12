@@ -20,7 +20,7 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 0
     description: "\u653E\u5F03\u672C\u56DE\u5408\u4E0B\u5B50\uFF0C\u800C\u5728\u68CB\u76D8\u968F\u673A\u7684\u4F4D\u7F6E\u53EC\u55242\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u82E5\u8BE5\u68CB\u5B50\u5468\u56F4\u65E0\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5219\u8BE5\u68CB\u5B50\u4FDD\u7559\uFF0C\u5426\u5219\u5219\u79FB\u9664\u3002"
-    particleEffect: {fileID: 3224500998409190371, guid: 9423b428f6b0a74469ca15a19e19cc8f, type: 3}
+    particleEffectPath: 
   - cardName: 3
     id: 1
     cardPrefabs: {fileID: 4770560170428687271, guid: bea3149be904a9b40ab19a59a4b3fb92, type: 3}
@@ -28,7 +28,7 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u672A\u7EC4\u6210\u8FDE\u5BF9\u7684\u654C\u65B9\u68CB\u5B50\u5E76\u5C06\u5176\u6D88\u706D\uFF0C\u4F60\u7684\u5BF9\u624B\u6478\u4E00\u5F20\u724C"
-    particleEffect: {fileID: 4800933810677652338, guid: 36aa3c73e18f5ba4980a8c6ab9a38417, type: 3}
+    particleEffectPath: Prefabs/Particle/HuanMieParticle
   - cardName: 4
     id: 2
     cardPrefabs: {fileID: 2240197435959964526, guid: 1144a90824f5d49488c4c4d3d80f115f, type: 3}
@@ -37,7 +37,7 @@ MonoBehaviour:
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u4F7F\u5176\u8F6C
       \u79FB\u5230\u5468\u56F4\u4E00\u4E2A\u8F83\u4E3A\u5408\u9002\u7684\u7A7A\u683C\u4E2D\u3002"
-    particleEffect: {fileID: 1333542725998803875, guid: 3afbbdd30df6c8442aa2635bac408bf0, type: 3}
+    particleEffectPath: Prefabs/Particle/XingYiParticle
   - cardName: 6
     id: 3
     cardPrefabs: {fileID: 5360375521412364225, guid: c00a1d185824b404da04eeb4b41b32d3, type: 3}
@@ -45,7 +45,7 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 1
     description: "\u653E\u5F03\u672C\u56DE\u5408\u4E0B\u5B50\uFF0C\u8F6C\u800C\u5728\u968F\u673A\u4E00\u4E2A\u7A7A\u683C\u751F\u6210\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5E76\u6478\u4E24\u5F20\u724C\u3002"
-    particleEffect: {fileID: 4725184201852628085, guid: d9b383cf75a8bd3469ea6896bcac9623, type: 3}
+    particleEffectPath: 
   - cardName: 7
     id: 4
     cardPrefabs: {fileID: 4871672039110086772, guid: 807ec32cf78cecc438b1710c77303088, type: 3}
@@ -53,7 +53,7 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u7A7A\u683C\u5B50\uFF0C\u82E5\u5BF9\u624B\u4E0B\u56DE\u5408\u843D\u5B50\u5230\u8BE5\u4F4D\u7F6E\uFF0C\u5219\u5C06\u8BE5\u68CB\u5B50\u6D88\u706D\u3002"
-    particleEffect: {fileID: 3224500998409190371, guid: 9423b428f6b0a74469ca15a19e19cc8f, type: 3}
+    particleEffectPath: 
   - cardName: 8
     id: 5
     cardPrefabs: {fileID: 2418699139872993271, guid: ed984b2df6043d846baf87ff73fc8302, type: 3}
@@ -61,7 +61,7 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5C06\u5176\u4E0E\u968F\u673A\u4E00\u4E2A\u76F8\u90BB\u7684\u654C\u65B9\u68CB\u5B50\u4EA4\u6362\u4F4D\u7F6E\u3002"
-    particleEffect: {fileID: 8999648267675763200, guid: e023f6cc27154fe4cb0b39461e2e3b80, type: 3}
+    particleEffectPath: Prefabs/Particle/ZhiHuanParticle
   - cardName: 9
     id: 6
     cardPrefabs: {fileID: 7574303146747654132, guid: dc7144851ac0caa448225ddcfedea500, type: 3}
@@ -69,7 +69,7 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u654C\u65B9\u68CB\u5B50\uFF0C\u4F7F\u5176\u79FB\u52A8\u5230\u76F8\u90BB\u7684\u5176\u4ED6\u7A7A\u683C\u5904\uFF0C\u82E5\u5176\u5DF2\u88AB\u5DF1\u65B9\u68CB\u5B50\u5305\u56F4\uFF0C\u5219\u5C06\u5176\u6D88\u706D"
-    particleEffect: {fileID: 3224500998409190371, guid: 9423b428f6b0a74469ca15a19e19cc8f, type: 3}
+    particleEffectPath: Prefabs/Particle/QuLiParticle
   - cardName: 10
     id: 7
     cardPrefabs: {fileID: 8060370093681596719, guid: b8ad99e688b49d548abb8810df6e8782, type: 3}
@@ -77,4 +77,4 @@ MonoBehaviour:
     costNum: 1
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\u5C06\u5176\u6D88\u706D\uFF0C\u5728\u8BE5\u68CB\u5B50\u5468\u56F4\u7684\u5176\u4ED6\u7A7A\u683C\u968F\u673A\u751F\u6210\u4E24\u4E2A\u5DF1\u65B9\u68CB\u5B50\u3002"
-    particleEffect: {fileID: 929862443702796663, guid: 2de7f69178317394cb77e809621fe2b0, type: 3}
+    particleEffectPath: Prefabs/Particle/FenLieParticle
