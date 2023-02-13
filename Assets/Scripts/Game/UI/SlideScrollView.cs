@@ -104,6 +104,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public void ToNextPage()
     {
         float moveDistance = 0;
+        AudioController.Instance.PlayAudio(0);
         if (currentIndex >= totalItemNum)
         {
             return;
@@ -117,11 +118,13 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         }
         DOTween.To(() => contentTrans.localPosition, lerpValue => contentTrans.localPosition = lerpValue, currentContentLocalPos + new Vector3(moveDistance, 0, 0), 0.5f).SetEase(Ease.OutQuint);
         currentContentLocalPos += new Vector3(moveDistance, 0, 0);
+       
     }
 
     public void ToLastPage()
     {
         float moveDistance = 0;
+        AudioController.Instance.PlayAudio(0);
         if (currentIndex <= 1)
         {
             return;

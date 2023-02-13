@@ -29,15 +29,18 @@ public class ChoiceModelPanel : BasePanel
 		{
 			if(slideScrollView.currentIndex==2|| slideScrollView.currentIndex == 3)
 			{
+				AudioController.Instance.PlayAudio(0);
 				SceneManager.LoadScene(slideScrollView.currentIndex);
 			}
 			else
 			{
+				AudioController.Instance.PlayAudio(0);
 				UIManager.Instance.PushPanel(UIPanelType.Match);
 			}															
 		});
 		closeButton.onClick.AddListener(() => 
 		{
+			AudioController.Instance.PlayAudio(0);
 			UIManager.Instance.PopPanel();
 		});
 	}

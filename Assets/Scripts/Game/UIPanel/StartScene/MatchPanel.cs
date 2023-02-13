@@ -18,6 +18,7 @@ public class MatchPanel : BasePanel
 		cancelButton.onClick.AddListener(() =>
 		{
 			UIManager.Instance.PopPanel();
+			AudioController.Instance.PlayAudio(0);
 			//TODO向服务器发送取消匹配请求
 			CancelInvoke("MatchOpponent");
 			ProtocolManager.Match("111", false, (res, resText,resId) =>

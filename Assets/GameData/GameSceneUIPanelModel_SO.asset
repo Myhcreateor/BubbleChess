@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameSceneUIPanelModel_SO
   m_EditorClassIdentifier: 
   uiPanelInfoList:
-  - panelType: 6
-    path: GameScene/SelectCardPanel
   - panelType: 7
+    path: GameScene/SelectCardPanel
+  - panelType: 8
     path: GameScene/GameOverPanel

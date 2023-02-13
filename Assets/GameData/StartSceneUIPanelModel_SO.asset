@@ -25,3 +25,5 @@ MonoBehaviour:
     path: StartScene/ChoiceModelPanel
   - panelType: 5
     path: StartScene/MatchPanel
+  - panelType: 6
+    path: StartScene/GalleryPanel

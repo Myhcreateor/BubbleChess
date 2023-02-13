@@ -11,6 +11,7 @@ public class AboutUsPanel : BasePanel
 		closeButton = transform.Find("CloseButton").GetComponent<Button>();
 		closeButton.onClick.AddListener(() =>
 		{
+			AudioController.Instance.PlayAudio(0);
 			UIManager.Instance.PopPanel();
 		});
 	}

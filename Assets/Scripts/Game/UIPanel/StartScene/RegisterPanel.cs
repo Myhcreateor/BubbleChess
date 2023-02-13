@@ -22,6 +22,7 @@ public class RegisterPanel : BasePanel
 		registerButton.onClick.AddListener(RegisterUI);
 		closeButton.onClick.AddListener(() =>
 		{
+			AudioController.Instance.PlayAudio(0);
 			UIManager.Instance.PopPanel();
 		});
 	}
@@ -32,6 +33,7 @@ public class RegisterPanel : BasePanel
 
 	public void RegisterUI()
 	{
+		AudioController.Instance.PlayAudio(0);
 		if (registerPassword.text.Equals(registerRePassword.text))
 		{
 			ProtocolManager.Register(RegisterType.Phone, registerUsername.text, registerPassword.text, "123456", (res) =>
