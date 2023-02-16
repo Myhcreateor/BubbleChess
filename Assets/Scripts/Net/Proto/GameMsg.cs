@@ -51,3 +51,15 @@ public class MsgCardTrigger : MsgBase
 	[ProtoMember(5)]
 	public UpdateResult UpdateResult;
 }
+
+[ProtoContract]
+public class MsgEndOfBattle : MsgBase
+{
+	public MsgEndOfBattle()
+	{
+		ProtoType = ProtocolEnum.MsgEndOfBattle;
+	}
+	//客户端向服务器发送的数据
+	[ProtoMember(1)]
+	public override ProtocolEnum ProtoType { get; set; }
+}

@@ -15,13 +15,14 @@ public class CardManager : Singleton<CardManager>
 
 	protected virtual void Update()
 	{
-		if (GameController.Instance.gameMode == GameMode.Stand_Alone|| GameController.Instance.gameMode == GameMode.NetWorking)
-		{
-			if (Input.GetKeyDown(KeyCode.Q))
-			{
-				isAddCardToHand = true; 
-			}
-		}
+		//测试时使用
+		//if (GameController.Instance.gameMode == GameMode.Stand_Alone|| GameController.Instance.gameMode == GameMode.NetWorking)
+		//{
+		//	if (Input.GetKeyDown(KeyCode.Q))
+		//	{
+		//		isAddCardToHand = true; 
+		//	}
+		//}
 		if (isAddCardToHand)
 		{
 			//生成卡牌

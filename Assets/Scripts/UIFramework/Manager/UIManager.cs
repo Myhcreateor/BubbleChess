@@ -96,7 +96,7 @@ public class UIManager:Singleton<UIManager>
             return panel;
         }
     }
-    private void InitUIPanelPathDic()
+    public void InitUIPanelPathDic()
 	{
         panelPathDict = new Dictionary<UIPanelType, string>();
 		if (uIPanelModel == null)

@@ -12,6 +12,8 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public List<GameObject> piecesList;
 	public GameMode gameMode;
 	public int twoSideRoundNum = 0;
+	public int playerOneRoundNum = 0;
+	public int playerTwoRoundNum = 0;
 	public Player player;
 	public bool IsPlayeChess;
 	//计算分数的数组
@@ -95,12 +97,12 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		EventHandler.CallUpdateChessBoardEvent();
 		EventHandler.CallNewStartGameEvent();
 		GameController.Instance.currentCharacterIndex++;
-		GameController.Instance. ChooseMan_MachinePlayer(GameController.Instance.currentCharacterIndex);
+		GameController.Instance.ChooseMan_MachinePlayer(GameController.Instance.currentCharacterIndex);
 	}
-	//判断回合数是否结束
+	//判断非联网游戏回合数是否结束
 	public bool isRoundOver(int pieceNum)
 	{
-		EventHandler.CallUpdateDebugEvent(chessBoardModel.roundNum-pieceNum/2);
+		EventHandler.CallUpdateDebugEvent(chessBoardModel.roundNum - pieceNum / 2);
 		if (chessBoardModel.roundNum * 2 <= pieceNum)
 		{
 			//游戏结束
@@ -109,13 +111,35 @@ public class ChessBoardController : Singleton<ChessBoardController>
 			{
 				Man_MachineUIManager.Instance.ShowGameOverPanel(firstScore, secondScore);
 			}
-			else 
+			else
 			{
 				UIOldManager.Instance.ShowGameOverPanel(firstScore, secondScore);
 			}
 			return true;
 		}
 		return false;
+	}
+	//判断联机模式游戏回合数是否结束
+	public bool isNetworkRoundOver(int pieceNum)
+	{
+		if (chessBoardModel.roundNum <= pieceNum)
+		{
+			EndOfBattle();
+			//Todo:通知另外一个玩家的客户端游戏结束
+			ProtocolManager.EndOfBattle((res) =>
+			{
+				Debug.Log(res);
+				EventHandler.CallUpdateDebugStringEvent(res.ToString());
+				EndOfBattle();
+			});
+			return true;
+		}
+		return false;
+	}
+	public void EndOfBattle()
+	{
+		EventHandler.CallGameOverEvent();
+		UIManager.Instance.PushPanel(UIPanelType.GameOver);
 	}
 	//更新棋盘，如果是黑色棋子值为1，白色棋子值为2
 	public void UpdateChessPieceArrays(int col, int row, int pieceType)
@@ -190,7 +214,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		{
 			for (int j = 0; j < 8; j++)
 			{
-				arrNew[i][j] = arr[i][7-j];
+				arrNew[i][j] = arr[i][7 - j];
 			}
 		}
 		return arrNew;
@@ -253,7 +277,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 		secondScore += CheckOneLine(s)[1];
 		//Debug.Log(s);
 		//UI显示分数
-		EventHandler.CallShowScoreEvent(firstScore,secondScore);
+		EventHandler.CallShowScoreEvent(firstScore, secondScore);
 	}
 
 	public int[] CheckOneLine(string line)

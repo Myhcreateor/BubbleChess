@@ -8,6 +8,9 @@ TagManager:
   - ChessPiece
   - ChessBoardRegion
   - ShowEnlargedIamge
+  - AudioController
+  - GameManager
+  - UiManager
   layers:
   - Default
   - TransparentFX

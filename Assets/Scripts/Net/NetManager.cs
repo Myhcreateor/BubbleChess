@@ -150,6 +150,15 @@ public class NetManager : Singleton<NetManager>
 				});
 				protoDic[protocolEnum](msgBase);
 			}
+			if (msgBase is MsgEndOfBattle)
+			{
+				AddProtoListener(ProtocolEnum.MsgEndOfBattle, (resmsg) =>
+				{
+					MsgEndOfBattle msgEndOfBattle = (MsgEndOfBattle)resmsg;
+					ChessBoardController.Instance. EndOfBattle();
+				});
+				protoDic[protocolEnum](msgBase);
+			}
 		}
 	}
 	//链接服务器函数

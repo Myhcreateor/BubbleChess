@@ -138,7 +138,6 @@ public class ChessBoardUI : MonoBehaviour
 
 	private void OnGameOverEvent()
 	{
-		Debug.Log("游戏结束");
 		ChessBoardController.Instance.CalculateScore();
 	}
 
@@ -194,7 +193,32 @@ public class ChessBoardUI : MonoBehaviour
 					EventHandler.CallUpdateChessBoardEvent();
 					chessBoardController.IsPlayeChess = true;
 					debugText.text = "你的回合开始";
+					//判断是否抽牌
+					if (GameController.Instance.player==Player.One)
+					{
+						//联机模式增加一张手牌，目前是第四/八/十二回合增加一张手牌，其他时候不抽牌
+						if (chessBoardController.playerOneRoundNum % 4 == 0&& chessBoardController.playerOneRoundNum<=12&& chessBoardController.playerOneRoundNum > 1) 
+						{
+							CardManager.Instance.isAddCardToHand = true;
+						}
+					}
+					else
+					{
+						if (chessBoardController.playerTwoRoundNum % 4 == 0 && chessBoardController.playerTwoRoundNum <= 12&& chessBoardController.playerTwoRoundNum>1)
+						{
+							CardManager.Instance.isAddCardToHand = true;
+						}
+					}
 				});
+				if (GameController.Instance.player == Player.One)
+				{
+					chessBoardController.playerOneRoundNum++;
+				}
+				else
+				{
+					chessBoardController.playerTwoRoundNum++;
+					chessBoardController.isNetworkRoundOver(chessBoardController.playerTwoRoundNum);
+				}
 			}
 		}
 
@@ -212,8 +236,11 @@ public class ChessBoardUI : MonoBehaviour
 		if (trans != null)
 		{
 			GameObject go = Resources.Load<GameObject>(path);
-			GameObject effectGo = Instantiate(go, trans.position, Quaternion.identity, trans);
-			Destroy(effectGo, 2f);
+			if (go != null)
+			{
+				GameObject effectGo = Instantiate(go, trans.position, Quaternion.identity, trans);
+				Destroy(effectGo, 2f);
+			}
 		}
 	}
 }

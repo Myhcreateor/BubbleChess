@@ -101,4 +101,15 @@ public class ProtocolManager
 			callback(msg.ParticleEffectPath,msg.trans,msg.ChessPieceLinearArray,msg.UpdateResult);
 		});
 	}
+	//游戏结束协议
+	public static void EndOfBattle(Action<int> callback)
+	{
+		MsgEndOfBattle msgEndOfBattle = new MsgEndOfBattle();
+		NetManager.Instance.SendMessage(msgEndOfBattle);
+		NetManager.Instance.AddProtoListener(ProtocolEnum.MsgEndOfBattle, (resmsg) =>
+		{
+			MsgEndOfBattle msg = (MsgEndOfBattle)resmsg;
+			callback(1);
+		});
+	}
 }
