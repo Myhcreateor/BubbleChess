@@ -16,6 +16,10 @@ public class Card_GuXuan : Card
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		GuXuanCommand guXuanCommand = new GuXuanCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		guXuanCommand.Execute();
 		for (int i = 0; i < guXuanCommand.str.Length; i++)
 		{
@@ -49,6 +53,7 @@ public class Card_GuXuan : Card
 				EventHandler.CallUpdateChessBoardEvent();
 			});
 		}
+		ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 		return true;
 	}
 

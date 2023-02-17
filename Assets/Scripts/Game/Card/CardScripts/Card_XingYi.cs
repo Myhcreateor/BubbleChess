@@ -13,10 +13,15 @@ public class Card_XingYi : Card
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		XingYiCommand xingYiCommand = new XingYiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		xingYiCommand.Execute();
 		if (xingYiCommand.isSuccessRelease)
 		{
 			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffectPath);
+			ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
 				ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>

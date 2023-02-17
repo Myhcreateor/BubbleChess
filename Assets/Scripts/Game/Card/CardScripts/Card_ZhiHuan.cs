@@ -13,10 +13,15 @@ public class Card_ZhiHuan : Card
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		ZhiHuanCommand zhiHuanCommand = new ZhiHuanCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		zhiHuanCommand.Execute();
 		if (zhiHuanCommand.isSuccessRelease)
 		{
 			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffectPath);
+			ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
 				ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>

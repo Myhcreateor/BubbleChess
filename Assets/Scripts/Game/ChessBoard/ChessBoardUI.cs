@@ -182,7 +182,6 @@ public class ChessBoardUI : MonoBehaviour
 				debugText.text = "等待对方下棋";
 				chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), GameController.Instance.GetPlayer());
 				EventHandler.CallUpdateChessBoardEvent();
-				//将数据发送给服务器,包括chessBoardController.chessPieceArrays,Userid,棋子类型
 				ProtocolManager.UpdateChessBroad(go.name, (s, res) =>
 				{
 					if (res == UpdateResult.Failed)
@@ -191,6 +190,8 @@ public class ChessBoardUI : MonoBehaviour
 					}
 					chessBoardController.UpdateChessPieceArrays(int.Parse(s.Split(',')[0]), int.Parse(s.Split(',')[1]), GameController.Instance.GetOpponent());
 					EventHandler.CallUpdateChessBoardEvent();
+					chessBoardController.crystalManager.CrystalNum++;
+					chessBoardController.crystalManager.UpdateCrystalNum();
 					chessBoardController.IsPlayeChess = true;
 					debugText.text = "你的回合开始";
 					//判断是否抽牌

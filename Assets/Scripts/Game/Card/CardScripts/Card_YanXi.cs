@@ -16,7 +16,12 @@ public class Card_YanXi : Card
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		YanXiCommand yanXiCommand = new YanXiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		yanXiCommand.Execute();
+		ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 		string clickTrans = "";
 		if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{

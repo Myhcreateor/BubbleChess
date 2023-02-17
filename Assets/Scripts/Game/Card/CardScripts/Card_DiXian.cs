@@ -29,7 +29,12 @@ public class Card_DiXian : Card
 			}
 
 		}
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		diXianCommand.Execute();
+		ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 		if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{
 			ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>

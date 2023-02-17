@@ -13,10 +13,15 @@ public class Card_HuanMie : Card
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		HuanMieCommand huanMieCommand = new HuanMieCommand(ref c.chessPieceArrays, GameController.Instance.GetOpponent(), clickTrans);
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		huanMieCommand.Execute();
 		if (huanMieCommand.isSuccessRelease)
 		{
 			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffectPath);
+			ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
 				ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>

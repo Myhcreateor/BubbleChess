@@ -16,6 +16,12 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public int playerTwoRoundNum = 0;
 	public Player player;
 	public bool IsPlayeChess;
+	public CrystalManager crystalManager;
+	//特殊Card效果
+	[HideInInspector]
+	public bool isUserHuanMie = false;
+	[HideInInspector]
+	public string huanMieTrans;
 	//计算分数的数组
 	public int[][] chessPieceArrays = new int[8][];
 	private int[][] transposeArrays = new int[8][];
@@ -25,6 +31,7 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	private void Awake()
 	{
 		base.Awake();
+		crystalManager = transform.Find("CrystalManager").GetComponent<CrystalManager>();
 		InitChessPieceArrays();
 		piecesList = chessBoardModel.piecesList;
 	}
@@ -59,6 +66,12 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	public Player GetPlayer()
 	{
 		return player;
+	}
+	//更新魔晶数
+	public void UpdateCrytralNum(int index)
+	{
+		crystalManager.CrystalNum += index;
+		EventHandler.CallUpdateCrytralEvent(crystalManager.CrystalNum);
 	}
 	//初始化棋子数组
 	private void InitChessPieceArrays()

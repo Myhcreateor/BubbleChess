@@ -36,6 +36,9 @@ public class DiXianCommand : ICommand
 		{
 			isSuccessRelease = true;
 			//TODO:下回合对手下棋位置如果是clickTrans则消灭
+			//向服务器端发送消息，改变其isUserHuanMie和huanMieTrans
+			//ChessBoardController.Instance.isUserHuanMie = true;
+			//ChessBoardController.Instance.huanMieTrans = clickTrans;
 			Debug.Log("TODO:下回合对手下棋位置如果是" + clickTrans + "则消灭");
 		}
 	}

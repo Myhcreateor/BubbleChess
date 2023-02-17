@@ -44,4 +44,9 @@ public class EventHandler : MonoBehaviour
 	{
 		GenerateParticleEffectEvent?.Invoke(s,path);
 	}
+	public static event Action<int> UpdateCrytralEvent;
+	public static void CallUpdateCrytralEvent(int index)
+	{
+		UpdateCrytralEvent?.Invoke(index);
+	}
 }

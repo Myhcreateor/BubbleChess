@@ -13,10 +13,15 @@ public class Card_QuLi : Card
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		QuLiCommand QuLiCommand = new QuLiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
+		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
 		QuLiCommand.Execute();
 		if (QuLiCommand.isSuccessRelease)
 		{
 			EventHandler.CallGenerateParticleEffectEvent(clickTrans, cardDetails.particleEffectPath);
+			ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 			if (GameController.Instance.gameMode == GameMode.NetWorking)
 			{
 				ProtocolManager.CardTrigger(cardDetails.particleEffectPath, clickTrans, (path, trans, chessPieceLinearArray, res) =>

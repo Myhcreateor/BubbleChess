@@ -17,7 +17,7 @@ MonoBehaviour:
     id: 0
     cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
     cardSprite: {fileID: 21300000, guid: 4664e44a4e5c21e49bb7c37effcead81, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 0
     description: "\u653E\u5F03\u672C\u56DE\u5408\u4E0B\u5B50\uFF0C\u800C\u5728\u68CB\u76D8\u968F\u673A\u7684\u4F4D\u7F6E\u53EC\u55242\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u82E5\u8BE5\u68CB\u5B50\u5468\u56F4\u65E0\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5219\u8BE5\u68CB\u5B50\u4FDD\u7559\uFF0C\u5426\u5219\u5219\u79FB\u9664\u3002"
     particleEffectPath: 
@@ -25,7 +25,7 @@ MonoBehaviour:
     id: 1
     cardPrefabs: {fileID: 4770560170428687271, guid: bea3149be904a9b40ab19a59a4b3fb92, type: 3}
     cardSprite: {fileID: 21300000, guid: 5a39fee1158c1df438dfe7e5ae1958ed, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u672A\u7EC4\u6210\u8FDE\u5BF9\u7684\u654C\u65B9\u68CB\u5B50\u5E76\u5C06\u5176\u6D88\u706D\uFF0C\u4F60\u7684\u5BF9\u624B\u6478\u4E00\u5F20\u724C"
     particleEffectPath: Prefabs/Particle/HuanMieParticle
@@ -33,16 +33,15 @@ MonoBehaviour:
     id: 2
     cardPrefabs: {fileID: 2240197435959964526, guid: 1144a90824f5d49488c4c4d3d80f115f, type: 3}
     cardSprite: {fileID: 21300000, guid: 701733ce4a0017742837ecab5cfe7aed, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 1
-    description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u4F7F\u5176\u8F6C
-      \u79FB\u5230\u5468\u56F4\u4E00\u4E2A\u8F83\u4E3A\u5408\u9002\u7684\u7A7A\u683C\u4E2D\u3002"
+    description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u4F7F\u5176\u8F6C\u79FB\u5230\u5468\u56F4\u4E00\u4E2A\u8F83\u4E3A\u5408\u9002\u7684\u7A7A\u683C\u4E2D\u3002"
     particleEffectPath: Prefabs/Particle/XingYiParticle
   - cardName: 6
     id: 3
     cardPrefabs: {fileID: 5360375521412364225, guid: c00a1d185824b404da04eeb4b41b32d3, type: 3}
     cardSprite: {fileID: 21300000, guid: 7fa9ef35ba1b18f4aadbec3e9e659b8e, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 1
     description: "\u653E\u5F03\u672C\u56DE\u5408\u4E0B\u5B50\uFF0C\u8F6C\u800C\u5728\u968F\u673A\u4E00\u4E2A\u7A7A\u683C\u751F\u6210\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5E76\u6478\u4E24\u5F20\u724C\u3002"
     particleEffectPath: 
@@ -50,7 +49,7 @@ MonoBehaviour:
     id: 4
     cardPrefabs: {fileID: 4871672039110086772, guid: 807ec32cf78cecc438b1710c77303088, type: 3}
     cardSprite: {fileID: 21300000, guid: e6e9839f2525ea3419f7dc31fcfaf79a, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u7A7A\u683C\u5B50\uFF0C\u82E5\u5BF9\u624B\u4E0B\u56DE\u5408\u843D\u5B50\u5230\u8BE5\u4F4D\u7F6E\uFF0C\u5219\u5C06\u8BE5\u68CB\u5B50\u6D88\u706D\u3002"
     particleEffectPath: 
@@ -58,7 +57,7 @@ MonoBehaviour:
     id: 5
     cardPrefabs: {fileID: 2418699139872993271, guid: ed984b2df6043d846baf87ff73fc8302, type: 3}
     cardSprite: {fileID: 21300000, guid: 919b4731b16fed945ba0ac81c60bd8e6, type: 3}
-    costNum: 1
+    costNum: 4
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\uFF0C\u5C06\u5176\u4E0E\u968F\u673A\u4E00\u4E2A\u76F8\u90BB\u7684\u654C\u65B9\u68CB\u5B50\u4EA4\u6362\u4F4D\u7F6E\u3002"
     particleEffectPath: Prefabs/Particle/ZhiHuanParticle
@@ -66,7 +65,7 @@ MonoBehaviour:
     id: 6
     cardPrefabs: {fileID: 7574303146747654132, guid: dc7144851ac0caa448225ddcfedea500, type: 3}
     cardSprite: {fileID: 21300000, guid: 5d05c2fbce6963f41b08a42dcaf5cb5e, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u654C\u65B9\u68CB\u5B50\uFF0C\u4F7F\u5176\u79FB\u52A8\u5230\u76F8\u90BB\u7684\u5176\u4ED6\u7A7A\u683C\u5904\uFF0C\u82E5\u5176\u5DF2\u88AB\u5DF1\u65B9\u68CB\u5B50\u5305\u56F4\uFF0C\u5219\u5C06\u5176\u6D88\u706D"
     particleEffectPath: Prefabs/Particle/QuLiParticle
@@ -74,7 +73,7 @@ MonoBehaviour:
     id: 7
     cardPrefabs: {fileID: 8060370093681596719, guid: b8ad99e688b49d548abb8810df6e8782, type: 3}
     cardSprite: {fileID: 21300000, guid: 26ef7d4b0e2ff1f42a749bf3a9b1850d, type: 3}
-    costNum: 1
+    costNum: 2
     roundUpNum: 1
     description: "\u9009\u62E9\u4E00\u4E2A\u5DF1\u65B9\u68CB\u5B50\u5C06\u5176\u6D88\u706D\uFF0C\u5728\u8BE5\u68CB\u5B50\u5468\u56F4\u7684\u5176\u4ED6\u7A7A\u683C\u968F\u673A\u751F\u6210\u4E24\u4E2A\u5DF1\u65B9\u68CB\u5B50\u3002"
     particleEffectPath: Prefabs/Particle/FenLieParticle
