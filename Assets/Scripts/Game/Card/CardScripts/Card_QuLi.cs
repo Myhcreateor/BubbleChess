@@ -16,6 +16,10 @@ public class Card_QuLi : BaseCard
 		{
 			return false;
 		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		QuLiCommand.Execute();
 		if (QuLiCommand.isSuccessRelease)
 		{

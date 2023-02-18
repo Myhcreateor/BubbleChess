@@ -16,6 +16,10 @@ public class Card_ZhiHuan : BaseCard
 		{
 			return false;
 		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		zhiHuanCommand.Execute();
 		if (zhiHuanCommand.isSuccessRelease)
 		{

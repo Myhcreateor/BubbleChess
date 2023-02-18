@@ -16,6 +16,10 @@ public class Card_XingYi : BaseCard
 		{
 			return false;
 		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		xingYiCommand.Execute();
 		if (xingYiCommand.isSuccessRelease)
 		{

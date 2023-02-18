@@ -16,6 +16,10 @@ public class Card_HuanMie : BaseCard
 		{
 			return false;
 		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		huanMieCommand.Execute();
 		if (huanMieCommand.isSuccessRelease)
 		{

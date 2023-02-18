@@ -20,6 +20,10 @@ public class Card_GuXuan : BaseCard
 		{
 			return false;
 		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		guXuanCommand.Execute();
 		for (int i = 0; i < guXuanCommand.str.Length; i++)
 		{

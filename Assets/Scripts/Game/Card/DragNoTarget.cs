@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class DragNoTarget : DragTarget, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-   
 
+    private bool isRelease=false;
     private void Awake()
     {
         base.Awake();
@@ -28,6 +28,7 @@ public class DragNoTarget : DragTarget, IPointerClickHandler, IBeginDragHandler,
     }
     public void OnDrag(PointerEventData eventData)
     {
+
     }
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -39,10 +40,14 @@ public class DragNoTarget : DragTarget, IPointerClickHandler, IBeginDragHandler,
         {
             if (g.gameObject.tag == "ChessBoardRegion")
             {
-                Destroy(this.gameObject);
                 //触发这个牌的效果
-                this.gameObject.GetComponent<Card>().ExecuteCommand();
-                HandCardLayout.Instance.RemoveCard(this.transform);
+                isRelease = this.gameObject.GetComponent<Card>().ExecuteCommand();
+                if (isRelease)
+                {
+                    Destroy(this.gameObject);
+                    HandCardLayout.Instance.RemoveCard(this.transform);
+                    //isExecute = true;
+                }
             }
         }
         EndThisDrag();
@@ -68,8 +73,8 @@ public class DragNoTarget : DragTarget, IPointerClickHandler, IBeginDragHandler,
     {
         if (dragging)
         {
-            Vector3 mousePos = Input.mousePosition;
-            transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
         }
     }
 

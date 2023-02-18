@@ -8,6 +8,7 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
     private GameObject hintGo;
     private Image hintImage;
     private bool isRelease;
+
     private void Awake()
     {
         base.Awake();
@@ -41,16 +42,19 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
         {
             if(g.gameObject.tag == "Floor")
 			{
-                this.gameObject.GetComponent<Image>().enabled = false;
+                transform.Find("Image").GetComponent<Image>().enabled = false;
+                grow.color = new Color(grow.color.r, grow.color.g, grow.color.b, 0);
                 hintImage.enabled = true;
                 hintGo.transform.position = g.gameObject.transform.position;
                 isInChessBoard = true;
-
+                Debug.Log("在棋盘里");
 			}
         }
 		if (!isInChessBoard)
 		{
             hintImage.enabled = false;
+            transform.Find("Image").GetComponent<Image>().enabled = true;
+            grow.color = new Color(grow.color.r, grow.color.g, grow.color.b, 1);
         }
 
     }
@@ -80,7 +84,8 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
 		if (!isExecute)
 		{
             hintImage.enabled = false;
-            this.gameObject.GetComponent<Image>().enabled = true;
+            transform.Find("Image").GetComponent<Image>().enabled = true;
+            grow.color = new Color(grow.color.r, grow.color.g, grow.color.b, 1);
             EndThisDrag();
         }
     }
@@ -105,8 +110,11 @@ public class DragHasTarget : DragTarget, IPointerClickHandler, IBeginDragHandler
     {
         if (dragging)
         {
-            Vector3 mousePos = Input.mousePosition;
-            transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
+           Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//屏幕坐标转换世界坐标
+            //Vector2 uiPos = c.transform.InverseTransformPoint(worldPos);//世界坐标转换位本地坐标
+
+           //Vector3 mousePos = Input.mousePosition;
+            transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
         }
     }
 

@@ -20,6 +20,10 @@ public class Card_YanXi : BaseCard
 		{
 			return false;
 		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		yanXiCommand.Execute();
 		ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 		string clickTrans = "";

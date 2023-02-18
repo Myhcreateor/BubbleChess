@@ -32,6 +32,10 @@ public class Card_DiXian : BaseCard
 		{
 			return false;
 		}
+		if(GameController.Instance.gameMode == GameMode.NetWorking&& !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
 		diXianCommand.Execute();
 		ChessBoardController.Instance.UpdateCrytralNum(-cardDetails.costNum);
 		if (GameController.Instance.gameMode == GameMode.NetWorking)

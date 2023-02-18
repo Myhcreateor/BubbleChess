@@ -50,8 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23008f905db68664a820cdb019c980c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardFront: {fileID: 361821545430216816}
-  cardBack: {fileID: 361821544825606668}
   cardState: 1
   mTime: 0.3
   isActive: 0
@@ -179,6 +177,7 @@ MonoBehaviour:
     costNum: 0
     roundUpNum: 0
     description: 
+    particleEffectPath: 
 --- !u!1 &361821545430216816
 GameObject:
   m_ObjectHideFlags: 0
