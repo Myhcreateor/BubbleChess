@@ -7,5 +7,4 @@ public abstract class Card : MonoBehaviour
     public CardDetails cardDetails;
     public abstract bool ExecuteCommand();
     public abstract void SetClickTrans(string s);
-	
 }

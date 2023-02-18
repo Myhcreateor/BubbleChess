@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-public class Card_GuXuan : Card
+public class Card_GuXuan : BaseCard
 {
     public GuXuanCommand guXuanCommand;
 

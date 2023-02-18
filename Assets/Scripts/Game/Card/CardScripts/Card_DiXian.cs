@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card_DiXian : Card
+public class Card_DiXian : BaseCard
 {
-	private string clickTrans;
 	private void Start()
 	{
 		cardDetails = CardManager.Instance.cardModel_SO.GetCardDetailsWithName(CardName.DiXian);
@@ -50,6 +49,6 @@ public class Card_DiXian : Card
 	}
 	public override void SetClickTrans(string s)
 	{
-		clickTrans = s;
+		base.SetClickTrans(s);
 	}
 }

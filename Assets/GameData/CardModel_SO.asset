@@ -15,7 +15,7 @@ MonoBehaviour:
   cardList:
   - cardName: 1
     id: 0
-    cardPrefabs: {fileID: 4908070251194865821, guid: f83dcf37e51aeab49a27ca3bbf5e3c05, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: ead2c408c4baa8644b720619857fb46a, type: 3}
     cardSprite: {fileID: 21300000, guid: 4664e44a4e5c21e49bb7c37effcead81, type: 3}
     costNum: 2
     roundUpNum: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
     particleEffectPath: 
   - cardName: 3
     id: 1
-    cardPrefabs: {fileID: 4770560170428687271, guid: bea3149be904a9b40ab19a59a4b3fb92, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: f76458a620584cd49909167822be9f49, type: 3}
     cardSprite: {fileID: 21300000, guid: 5a39fee1158c1df438dfe7e5ae1958ed, type: 3}
     costNum: 2
     roundUpNum: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
     particleEffectPath: Prefabs/Particle/HuanMieParticle
   - cardName: 4
     id: 2
-    cardPrefabs: {fileID: 2240197435959964526, guid: 1144a90824f5d49488c4c4d3d80f115f, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: 32cf8b78a08fe40459153c267266a5fe, type: 3}
     cardSprite: {fileID: 21300000, guid: 701733ce4a0017742837ecab5cfe7aed, type: 3}
     costNum: 2
     roundUpNum: 1
@@ -39,7 +39,7 @@ MonoBehaviour:
     particleEffectPath: Prefabs/Particle/XingYiParticle
   - cardName: 6
     id: 3
-    cardPrefabs: {fileID: 5360375521412364225, guid: c00a1d185824b404da04eeb4b41b32d3, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: 5067f4762df2b1f47987ddee2c09fca3, type: 3}
     cardSprite: {fileID: 21300000, guid: 7fa9ef35ba1b18f4aadbec3e9e659b8e, type: 3}
     costNum: 2
     roundUpNum: 1
@@ -55,7 +55,7 @@ MonoBehaviour:
     particleEffectPath: 
   - cardName: 8
     id: 5
-    cardPrefabs: {fileID: 2418699139872993271, guid: ed984b2df6043d846baf87ff73fc8302, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: 7973270f7841c804683926e334b53d47, type: 3}
     cardSprite: {fileID: 21300000, guid: 919b4731b16fed945ba0ac81c60bd8e6, type: 3}
     costNum: 4
     roundUpNum: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
     particleEffectPath: Prefabs/Particle/ZhiHuanParticle
   - cardName: 9
     id: 6
-    cardPrefabs: {fileID: 7574303146747654132, guid: dc7144851ac0caa448225ddcfedea500, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: 2c7569334ef2d804f912e3f01e8c4313, type: 3}
     cardSprite: {fileID: 21300000, guid: 5d05c2fbce6963f41b08a42dcaf5cb5e, type: 3}
     costNum: 2
     roundUpNum: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
     particleEffectPath: Prefabs/Particle/QuLiParticle
   - cardName: 10
     id: 7
-    cardPrefabs: {fileID: 8060370093681596719, guid: b8ad99e688b49d548abb8810df6e8782, type: 3}
+    cardPrefabs: {fileID: 4871672039110086772, guid: aed10fc42084aaa44a5584642ae89f28, type: 3}
     cardSprite: {fileID: 21300000, guid: 26ef7d4b0e2ff1f42a749bf3a9b1850d, type: 3}
     costNum: 2
     roundUpNum: 1

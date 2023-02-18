@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card_HuanMie : Card
+public class Card_HuanMie : BaseCard
 {
-	private string clickTrans;
 	private void Start()
 	{
 		cardDetails = CardManager.Instance.cardModel_SO.GetCardDetailsWithName(CardName.HuanMie);
@@ -39,6 +38,6 @@ public class Card_HuanMie : Card
 	}
 	public override void  SetClickTrans(string s)
 	{
-		clickTrans = s;
+		base.SetClickTrans(s);
 	}
 }

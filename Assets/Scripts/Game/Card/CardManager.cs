@@ -118,7 +118,6 @@ public class CardManager : Singleton<CardManager>
 				//ToDo:增加卡牌翻转的过渡动画
 				HandCardLayout.Instance.AddCard(card.transform);
 			}
-
 		}
 	}
 }
