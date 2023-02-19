@@ -12,11 +12,7 @@ public class Card_FenLie : BaseCard
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		FenLieCommand fenLieCommand = new FenLieCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}

@@ -70,8 +70,24 @@ public class ChessBoardController : Singleton<ChessBoardController>
 	//更新魔晶数
 	public void UpdateCrytralNum(int index)
 	{
-		crystalManager.CrystalNum += index;
-		EventHandler.CallUpdateCrytralEvent(crystalManager.CrystalNum);
+		if (GameController.Instance.gameMode == GameMode.Stand_Alone)
+		{
+			if (ChessBoardController.Instance.player == Player.One)
+			{
+				crystalManager.CrystalNum1 += index;
+				EventHandler.CallUpdateCrytralEvent(crystalManager.CrystalNum1);
+			}
+			else
+			{
+				crystalManager.CrystalNum2 += index;
+				EventHandler.CallUpdateCrytralEvent(crystalManager.CrystalNum2);
+			}
+		}
+		else
+		{
+			crystalManager.CrystalNum += index;
+			EventHandler.CallUpdateCrytralEvent(crystalManager.CrystalNum);
+		}
 	}
 	//初始化棋子数组
 	private void InitChessPieceArrays()

@@ -12,11 +12,7 @@ public class Card_QuLi : BaseCard
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		QuLiCommand QuLiCommand = new QuLiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}

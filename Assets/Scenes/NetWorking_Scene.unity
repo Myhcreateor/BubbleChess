@@ -1309,6 +1309,7 @@ MonoBehaviour:
   playerTwoRoundNum: 0
   player: 0
   IsPlayeChess: 0
+  crystalManager: {fileID: 0}
   isUserHuanMie: 0
   huanMieTrans: 
 --- !u!114 &319588571

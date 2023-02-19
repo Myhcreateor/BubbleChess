@@ -16,11 +16,7 @@ public class Card_YanXi : BaseCard
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		YanXiCommand yanXiCommand = new YanXiCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}

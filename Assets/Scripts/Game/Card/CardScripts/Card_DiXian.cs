@@ -28,11 +28,7 @@ public class Card_DiXian : BaseCard
 			}
 
 		}
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if(GameController.Instance.gameMode == GameMode.NetWorking&& !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}

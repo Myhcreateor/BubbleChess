@@ -12,11 +12,7 @@ public class Card_HuanMie : BaseCard
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		HuanMieCommand huanMieCommand = new HuanMieCommand(ref c.chessPieceArrays, GameController.Instance.GetOpponent(), clickTrans);
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}

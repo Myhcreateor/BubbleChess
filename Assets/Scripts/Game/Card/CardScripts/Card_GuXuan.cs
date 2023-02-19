@@ -16,11 +16,7 @@ public class Card_GuXuan : BaseCard
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		GuXuanCommand guXuanCommand = new GuXuanCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer());
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}

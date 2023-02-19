@@ -155,6 +155,8 @@ public class ChessBoardUI : MonoBehaviour
 			//如果目前是你的回合则下棋，如果是人机的回合，人机会自己下到合适的位置，目前假设人机对战你必定是先手
 			chessBoardController.UpdateChessPieceArrays(int.Parse(go.name.Split(',')[0]), int.Parse(go.name.Split(',')[1]), (chessBoardController.twoSideRoundNum % 2) + 1);
 			EventHandler.CallUpdateChessBoardEvent();
+			chessBoardController.crystalManager.CrystalNum++;
+			chessBoardController.crystalManager.UpdateCrystalNum();
 			chessBoardController.twoSideRoundNum += 2;
 			if (chessBoardController.twoSideRoundNum % 10 == 0)
 			{
@@ -173,6 +175,16 @@ public class ChessBoardUI : MonoBehaviour
 			EventHandler.CallUpdateChessBoardEvent();
 			chessBoardController.twoSideRoundNum++;
 			chessBoardController.isRoundOver(chessBoardController.twoSideRoundNum);
+			if (ChessBoardController.Instance.GetPlayer() == Player.One)
+			{
+				chessBoardController.crystalManager.CrystalNum1++;
+				chessBoardController.crystalManager.UpdateCrystalNum();
+			}
+			else
+			{
+				chessBoardController.crystalManager.CrystalNum2++;
+				chessBoardController.crystalManager.UpdateCrystalNum();
+			}
 		}
 		else if (GameController.Instance.gameMode == GameMode.NetWorking)
 		{

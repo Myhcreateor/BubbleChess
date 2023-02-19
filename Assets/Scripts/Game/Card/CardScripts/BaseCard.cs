@@ -21,15 +21,32 @@ public class BaseCard : Card
 		{
 			grow = transform.Find("Grow").gameObject;
 		}
-		if (cardDetails.costNum <= ChessBoardController.Instance.crystalManager.CrystalNum&& ChessBoardController.Instance.IsPlayeChess)
+		if (GameController.Instance.gameMode==GameMode.NetWorking&& cardDetails.costNum <= ChessBoardController.Instance.crystalManager.CrystalNum&& ChessBoardController.Instance.IsPlayeChess)
 		{
 			grow.GetComponent<Image>().enabled = true;
-			//grow.GetComponent<Image>().color = new Color(1,1,1,1);
+		}
+		else if (GameController.Instance.gameMode == GameMode.Man_Machine && cardDetails.costNum <= ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			grow.GetComponent<Image>().enabled = true;
+		}
+		else if(GameController.Instance.gameMode == GameMode.Stand_Alone)
+		{
+			if( ChessBoardController.Instance.GetPlayer() == Player.One && cardDetails.costNum <= ChessBoardController.Instance.crystalManager.CrystalNum1)
+			{
+				grow.GetComponent<Image>().enabled = true;
+			}
+			else if (ChessBoardController.Instance.GetPlayer() == Player.Two && cardDetails.costNum <= ChessBoardController.Instance.crystalManager.CrystalNum2)
+			{
+				grow.GetComponent<Image>().enabled = true;
+			}
+			else
+			{
+				grow.GetComponent<Image>().enabled = false;
+			}
 		}
 		else
 		{
 			grow.GetComponent<Image>().enabled = false;
-			//grow.GetComponent<Image>().color = new Color(0, 0, 0, 0);
 		}
 	}
 	public override bool ExecuteCommand()
@@ -41,5 +58,27 @@ public class BaseCard : Card
 	{
 		clickTrans = s;
 	}
-
+	protected bool CheckIsSufficientCost()
+	{
+		if (GameController.Instance.gameMode != GameMode.Stand_Alone && cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
+		{
+			return false;
+		}
+		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		{
+			return false;
+		}
+		if (GameController.Instance.gameMode == GameMode.Stand_Alone)
+		{
+			if (ChessBoardController.Instance.player == Player.One && cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum1)
+			{
+				return false;
+			}
+			else if (ChessBoardController.Instance.player == Player.Two && cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum2)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

@@ -12,11 +12,7 @@ public class Card_ZhiHuan : BaseCard
 	{
 		ChessBoardController c = ChessBoardController.Instance;
 		ZhiHuanCommand zhiHuanCommand = new ZhiHuanCommand(ref c.chessPieceArrays, GameController.Instance.GetPlayer(), clickTrans);
-		if (cardDetails.costNum > ChessBoardController.Instance.crystalManager.CrystalNum)
-		{
-			return false;
-		}
-		if (GameController.Instance.gameMode == GameMode.NetWorking && !ChessBoardController.Instance.IsPlayeChess)
+		if (!CheckIsSufficientCost())
 		{
 			return false;
 		}
